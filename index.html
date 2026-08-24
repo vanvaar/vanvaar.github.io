@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANVAAR</title>
-    <!-- FontAwesome CDN -->
+    <!-- FontAwesome 6.5.1 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -16,17 +16,17 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        /* Sky Background */
+        /* Real Blue Sky Background */
         body {
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
             padding-bottom: 70px;
-            background: linear-gradient(180deg, #1e5799 0%, #2989d8 50%, #7db9e8 100%) !important;
+            background: linear-gradient(180deg, #18529d 0%, #2b77c8 50%, #4b94df 100%) !important;
             background-attachment: fixed;
         }
 
-        /* Smooth Hardware-Accelerated Clouds Container */
+        /* Continuous Smooth Realistic Clouds */
         .sky-bg {
             position: fixed;
             top: 0;
@@ -35,43 +35,49 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
+            overflow: hidden;
         }
 
-        .cloud {
+        .cloud-layer {
             position: absolute;
-            fill: rgba(255, 255, 255, 0.85);
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(25px);
             will-change: transform;
         }
 
-        /* Sharp Vector Clouds Movement */
-        .cloud-1 {
-            width: 220px;
-            top: 10%;
-            animation: moveSmooth 22s linear infinite;
-        }
-
-        .cloud-2 {
+        .c1 {
             width: 320px;
-            top: 35%;
-            animation: moveSmooth 35s linear infinite 5s;
+            height: 140px;
+            top: 10%;
+            box-shadow: 100px 40px 60px rgba(255,255,255,0.8), 240px 20px 80px rgba(255,255,255,0.7);
+            animation: moveClouds 28s linear infinite;
         }
 
-        .cloud-3 {
-            width: 260px;
-            top: 65%;
-            animation: moveSmooth 28s linear infinite 12s;
+        .c2 {
+            width: 450px;
+            height: 180px;
+            top: 40%;
+            box-shadow: 120px 50px 70px rgba(255,255,255,0.85), 300px 30px 90px rgba(255,255,255,0.75);
+            animation: moveClouds 42s linear infinite 8s;
         }
 
-        @keyframes moveSmooth {
-            0% {
-                transform: translate3d(-350px, 0, 0);
-            }
-            100% {
-                transform: translate3d(calc(100vw + 350px), 0, 0);
-            }
+        .c3 {
+            width: 360px;
+            height: 130px;
+            top: 70%;
+            box-shadow: 90px 30px 50px rgba(255,255,255,0.8), 200px 20px 60px rgba(255,255,255,0.7);
+            animation: moveClouds 34s linear infinite 16s;
         }
 
-        /* Content Layer above Clouds */
+        @keyframes moveClouds {
+            0% { transform: translate3d(-500px, 0, 0); }
+            100% { transform: translate3d(100vw, 0, 0); }
+        }
+
+        /* Content Layer Above Clouds */
         header, .container, footer, .bottom-nav {
             position: relative;
             z-index: 2;
@@ -83,13 +89,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.55) !important;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.45) !important;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
         }
 
         .logo { font-size: 1.2rem; letter-spacing: 1px; }
 
-        /* Main Container */
+        /* Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -101,16 +107,15 @@
         .subtitle { font-size: 1.1rem; margin-bottom: 30px; }
         h2.section-title { font-size: 1.4rem; margin: 30px 0 15px 0; text-align: left; }
 
-        /* Grid Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 15px;
         }
 
-        /* Transparent Clear Cards */
+        /* Fully Transparent Content Card Containers */
         .card {
-            background: rgba(255, 255, 255, 0.4) !important;
+            background: rgba(255, 255, 255, 0.35) !important;
             border: 2px solid #000000 !important;
             border-radius: 12px;
             height: 200px;
@@ -133,8 +138,8 @@
         footer {
             margin-top: 40px;
             padding: 25px 20px 80px 20px;
-            background: rgba(255, 255, 255, 0.5) !important;
-            border-top: 2px solid rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.4) !important;
+            border-top: 2px solid rgba(0, 0, 0, 0.15);
             text-align: center;
         }
 
@@ -173,37 +178,54 @@
         .copyright { font-size: 0.9rem; margin-bottom: 8px; }
         .legal-links { font-size: 0.85rem; }
 
-        /* Fixed Bottom Mobile Nav */
+        /* Pure Black Vector Icon Only Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 60px;
-            background: rgba(255, 255, 255, 0.85) !important;
+            background: rgba(255, 255, 255, 0.9) !important;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            border-top: 2px solid rgba(0, 0, 0, 0.25);
+            border-top: 2px solid #000000;
             z-index: 100;
         }
 
         .nav-item {
             text-decoration: none;
-            font-size: 0.75rem;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            width: 25%;
+            height: 100%;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+
+        .nav-item i {
+            font-size: 1.5rem !important;
+            color: #000000 !important;
+        }
+
+        .nav-item.active {
+            background: rgba(0, 0, 0, 0.1) !important;
+            border-bottom: 4px solid #000000;
+        }
+
+        .nav-item:active {
+            transform: scale(0.9);
         }
     </style>
 </head>
 <body>
 
-    <!-- Crisp Sharp Vector Cloud Animation Background -->
+    <!-- Continuous Smooth Realistic Clouds -->
     <div class="sky-bg">
-        <svg class="cloud cloud-1" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-        <svg class="cloud cloud-2" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-        <svg class="cloud cloud-3" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <div class="cloud-layer c1"></div>
+        <div class="cloud-layer c2"></div>
+        <div class="cloud-layer c3"></div>
     </div>
 
     <header>
@@ -250,12 +272,22 @@
         <p class="legal-links">Privacy Policy | Terms & Conditions | Send Us Feedback</p>
     </footer>
 
+    <!-- Bottom Navigation Icons Only -->
     <div class="bottom-nav">
-        <a href="#" class="nav-item">🏠 Home</a>
-        <a href="#" class="nav-item">🎮 Games & Apps</a>
-        <a href="#" class="nav-item">🎬 Movies</a>
-        <a href="#" class="nav-item">👤 Profile</a>
+        <a href="#home" class="nav-item active" onclick="switchTab(this)"><i class="fa-solid fa-house"></i></a>
+        <a href="#games" class="nav-item" onclick="switchTab(this)"><i class="fa-solid fa-gamepad"></i></a>
+        <a href="#movies" class="nav-item" onclick="switchTab(this)"><i class="fa-solid fa-film"></i></a>
+        <a href="#profile" class="nav-item" onclick="switchTab(this)"><i class="fa-solid fa-user"></i></a>
     </div>
+
+    <script>
+        function switchTab(element) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
