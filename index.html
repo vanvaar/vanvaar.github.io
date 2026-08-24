@@ -16,7 +16,7 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        /* Clean Solid Sky Background (No Blur) */
+        /* Pure Sky Blue Background */
         body {
             min-height: 100vh;
             position: relative;
@@ -25,36 +25,18 @@
             background: #2b82c9 !important;
         }
 
-        /* Vector Floating Clouds Background */
-        .sky-bg {
+        /* Canvas Bouncing Area */
+        #bounceCanvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
             z-index: 1;
-            overflow: hidden;
         }
 
-        .cloud-svg {
-            position: absolute;
-            fill: #ffffff;
-            opacity: 0.9;
-            will-change: transform;
-        }
-
-        .c1 { width: 200px; top: 8%; animation: floatCloud 20s linear infinite; }
-        .c2 { width: 280px; top: 30%; animation: floatCloud 32s linear infinite 5s; }
-        .c3 { width: 240px; top: 60%; animation: floatCloud 26s linear infinite 10s; }
-        .c4 { width: 180px; top: 80%; animation: floatCloud 22s linear infinite 3s; }
-
-        @keyframes floatCloud {
-            0% { transform: translate3d(-300px, 0, 0); }
-            100% { transform: translate3d(100vw, 0, 0); }
-        }
-
-        /* Content Stack */
+        /* Foreground Website Layers */
         header, .container, footer, .bottom-nav {
             position: relative;
             z-index: 2;
@@ -83,7 +65,7 @@
         .subtitle { font-size: 1rem; margin-bottom: 25px; }
         h2.section-title { font-size: 1.3rem; margin: 25px 0 12px 0; text-align: left; }
 
-        /* Multi-Page Views for Bottom Navigation */
+        /* Multi-Page Views */
         .tab-content {
             display: none;
         }
@@ -98,7 +80,7 @@
             gap: 15px;
         }
 
-        /* Solid Crisp White Cards (No Blur Filters) */
+        /* Solid Crisp Transparent Cards */
         .card {
             background: rgba(255, 255, 255, 0.65) !important;
             border: 2px solid #000000 !important;
@@ -169,7 +151,7 @@
         .copyright { font-size: 0.85rem; margin-bottom: 6px; }
         .legal-links { font-size: 0.8rem; }
 
-        /* Compact Sleek Bottom Bar (Height 45px) */
+        /* Compact Bottom Bar (Height 45px) */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -207,13 +189,8 @@
 </head>
 <body>
 
-    <!-- Sharp Vector Cloud Background Animation -->
-    <div class="sky-bg">
-        <svg class="cloud-svg c1" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-        <svg class="cloud-svg c2" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-        <svg class="cloud-svg c3" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-        <svg class="cloud-svg c4" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-    </div>
+    <!-- Bouncing DVD-style 3D Logo Ball Canvas Background -->
+    <canvas id="bounceCanvas"></canvas>
 
     <header>
         <div class="logo">VANVAAR</div>
@@ -302,20 +279,18 @@
         <a class="nav-item" onclick="openTab('profile', this)"><i class="fa-solid fa-user"></i></a>
     </div>
 
-    <!-- JavaScript For Switching Tabs -->
+    <!-- JavaScript Navigation & 3D DVD Ball Physics Logic -->
     <script>
+        // Tab Switch Logic
         function openTab(tabId, element) {
-            // Hide all tab views
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active-tab'));
 
-            // Show selected tab view
             const selectedTab = document.getElementById(tabId);
             if (selectedTab) {
                 selectedTab.classList.add('active-tab');
             }
 
-            // Update bottom navigation bar active state
             if (element) {
                 const navItems = document.querySelectorAll('.bottom-nav .nav-item');
                 navItems.forEach(item => item.classList.remove('active'));
@@ -324,6 +299,78 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // DVD Bounce Ball Canvas Script
+        const canvas = document.getElementById('bounceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // 3D Sphere Ball Properties
+        const radius = 45;
+        let x = Math.random() * (canvas.width - radius * 2) + radius;
+        let y = Math.random() * (canvas.height - radius * 2) + radius;
+        let dx = 2.5;
+        let dy = 2.5;
+
+        function draw3DBall() {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            
+            // 3D Ball Lighting Gradient
+            let grad = ctx.createRadialGradient(x - radius * 0.3, y - radius * 0.3, radius * 0.1, x, y, radius);
+            grad.addColorStop(0, '#333333');
+            grad.addColorStop(0.7, '#111111');
+            grad.addColorStop(1, '#000000');
+            
+            ctx.fillStyle = grad;
+            ctx.shadowColor = 'rgba(0,0,0,0.4)';
+            ctx.shadowBlur = 15;
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 5;
+            ctx.fill();
+            ctx.restore();
+
+            // Red Outer Logo Border Frame
+            ctx.save();
+            ctx.strokeStyle = '#d32f2f';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(x - 32, y - 16, 64, 32);
+
+            // VANVAAR Logo Text Printed On Sphere
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'italic 900 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('VANVAAR', x, y + 1);
+            ctx.restore();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            draw3DBall();
+
+            // Bounce logic off screen boundaries
+            if (x + radius >= canvas.width || x - radius <= 0) {
+                dx = -dx;
+            }
+            if (y + radius >= canvas.height || y - radius <= 0) {
+                dy = -dy;
+            }
+
+            x += dx;
+            y += dy;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
     </script>
 
 </body>
