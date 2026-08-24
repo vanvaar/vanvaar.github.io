@@ -3,409 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanvaar Studios</title>
+    <title>VANVAAR</title>
+    <!-- FontAwesome for Social Media Logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Reset & Ultra-Smooth Styling */
+        /* Global Reset & Pure Black Bold Typography */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
+            color: #000000 !important;
+            font-weight: 800 !important;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
+        /* Sky Background & Smooth Cloud Drift */
         body {
-            background-color: #064E3B; /* Emerald Ink Theme */
-            color: #ffffff;
-            padding-bottom: 80px; /* Space for bottom nav */
+            background: linear-gradient(180deg, #19547b 0%, #2989d8 45%, #87ceeb 100%) !important;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
+            padding-bottom: 70px;
         }
 
-        /* Top Header (Logo Left, Three-Lines Right) */
-        .top-header {
+        /* Top Navigation */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background: rgba(6, 78, 59, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.45) !important;
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: 300; /* Patla font */
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #ffffff;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
         }
 
-        .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-            font-weight: 200;
-            letter-spacing: 2px;
-        }
-
-        /* Page Management Sections */
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .page.active-page {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hero Welcome Section (Animated & Thin Fonts) */
-        .hero-section {
-            padding: 40px 20px;
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 25px 15px;
             text-align: center;
         }
 
-        .hero-section h1 {
-            font-size: 36px;
-            font-weight: 300; /* Patla aur bada font */
-            letter-spacing: 1.5px;
-            line-height: 1.3;
-            margin-bottom: 15px;
-            color: #F3F4F6;
-            animation: pulseGlow 3s infinite alternate;
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 6px;
         }
 
-        @keyframes pulseGlow {
-            0% { opacity: 0.85; }
-            100% { opacity: 1; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
         }
 
-        .hero-section p {
-            font-size: 14px;
-            font-weight: 300;
-            color: #A7F3D0;
-            letter-spacing: 1px;
+        h2.section-title {
+            font-size: 1.4rem;
+            margin: 30px 0 15px 0;
+            text-align: left;
         }
 
-        /* Horizontal Slider Columns (Games & Movies) */
-        .slider-section {
-            padding: 20px 0;
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: 300;
-            padding-left: 20px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            color: #E5E7EB;
-        }
-
-        .horizontal-scroll {
-            display: flex;
-            overflow-x: auto;
+        /* Grid & Cards Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 15px;
-            padding: 0 20px 15px 20px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Hide scrollbar for clean look */
         }
 
-        .horizontal-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .card-item {
-            min-width: 200px;
-            height: 280px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        .card {
+            background: rgba(255, 255, 255, 0.35) !important;
+            border: 2px solid #000000 !important;
             border-radius: 12px;
-            scroll-snap-align: start;
-            flex-shrink: 0;
+            height: 200px;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            align-items: flex-end;
+            justify-content: center;
             padding: 15px;
-            text-decoration: none;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.2s ease;
         }
 
-        .card-item:active {
-            transform: scale(0.97);
+        .card:hover {
+            transform: translateY(-4px);
         }
 
-        .card-label {
-            font-size: 15px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 8px 12px;
+        .card-tag {
+            background: rgba(255, 255, 255, 0.9) !important;
+            padding: 6px 12px;
             border-radius: 6px;
-            backdrop-filter: blur(5px);
+            font-size: 0.85rem;
+            border: 1px solid #000000;
         }
 
-        /* Footer Style (MJ Style Multi-links & Copyright) */
+        /* Footer Section */
         footer {
-            padding: 40px 20px 20px 20px;
+            margin-top: 40px;
+            padding: 25px 20px;
+            background: rgba(255, 255, 255, 0.4) !important;
+            backdrop-filter: blur(8px);
+            border-top: 2px solid rgba(0, 0, 0, 0.15);
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            margin-top: 30px;
-            background: rgba(0, 0, 0, 0.15);
         }
 
         .footer-links {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 30px;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
         }
 
         .footer-links a {
-            color: #D1D5DB;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: #ffffff;
-        }
-
-        .copyright {
-            font-size: 11px;
-            font-weight: 200;
-            color: #9CA3AF;
-            line-height: 1.6;
-        }
-
-        /* Profile / Login Page Styling */
-        .profile-container {
-            padding: 30px 20px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .profile-container h2 {
-            font-size: 24px;
-            font-weight: 300;
+        /* Social Media Icons Styling */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
             margin-bottom: 20px;
         }
 
-        .input-box {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 6px;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 300;
+        .social-icon-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.85) !important;
+            border: 2px solid #000000 !important;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background: #ffffff;
-            color: #064E3B;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 14px;
-            cursor: pointer;
+        .social-icon-btn i {
+            font-size: 1.3rem;
         }
 
-        /* X-Style Bottom Navigation Bar */
+        .social-icon-btn:hover {
+            transform: scale(1.15);
+            background: #ffffff !important;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .legal-links {
+            font-size: 0.85rem;
+        }
+
+        /* Bottom Mobile Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 65px;
-            background-color: rgba(6, 78, 59, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            height: 60px;
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-around;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-            z-index: 999;
+            border-top: 2px solid rgba(0, 0, 0, 0.2);
+            z-index: 100;
         }
 
         .nav-item {
+            text-decoration: none;
+            font-size: 0.75rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #9CA3AF;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 300;
-            flex: 1;
-            background: none;
-            border: none;
-            cursor: pointer;
         }
 
-        .nav-item svg {
-            width: 22px;
-            height: 22px;
-            margin-bottom: 2px;
-            fill: currentColor;
+        /* CSS Sky Clouds Animation Overlay */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.4;
         }
 
-        .nav-item.active, .nav-item:hover {
-            color: #ffffff;
+        body::before {
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%),
+                        radial-gradient(circle at 40% 30%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 55%);
+            animation: moveClouds 35s linear infinite;
+        }
+
+        body::after {
+            background: radial-gradient(circle at 75% 60%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%);
+            animation: moveClouds 50s linear infinite reverse;
+        }
+
+        @keyframes moveClouds {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
-    <header class="top-header">
+    <header>
         <div class="logo">VANVAAR</div>
-        <div class="menu-icon" onclick="alert('Menu options coming soon!')">☰</div>
+        <div class="menu-icon">☰</div>
     </header>
 
-    <!-- 1. HOME PAGE -->
-    <div id="home" class="page active-page">
-        <!-- Welcome Animation Section -->
-        <section class="hero-section">
-            <h1>Welcome To Vanvaar Website</h1>
-            <p>Stories Beyond Imagination</p>
-        </section>
+    <div class="container">
+        <h1>Welcome To Vanvaar Website</h1>
+        <p class="subtitle">Stories Beyond Imagination</p>
 
-        <!-- Games Slider Column -->
-        <section class="slider-section">
-            <h2 class="section-title">Explore Your Favourite Vanvaar Games</h2>
-            <div class="horizontal-scroll">
-                <div class="card-item" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), #04382A;">
-                    <div class="card-label">Game 01 (Coming Soon)</div>
-                </div>
-                <div class="card-item" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), #04382A;">
-                    <div class="card-label">Game 02 (Coming Soon)</div>
-                </div>
-                <div class="card-item" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), #04382A;">
-                    <div class="card-label">Game 03 (Coming Soon)</div>
-                </div>
-            </div>
-        </section>
+        <h2 class="section-title">Explore Your Favourite Vanvaar Games</h2>
+        <div class="grid">
+            <div class="card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
+            <div class="card"><span class="card-tag">Game 02 (Coming Soon)</span></div>
+            <div class="card"><span class="card-tag">Game 03 (Coming Soon)</span></div>
+        </div>
 
-        <!-- Movies Slider Column (YouTube Direct Links) -->
-        <section class="slider-section">
-            <h2 class="section-title">Explore & See Your Favourite Vanvaar Movies</h2>
-            <div class="horizontal-scroll">
-                <a href="https://www.youtube.com" target="_blank" class="card-item" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), #032E22;">
-                    <div class="card-label">Movie 01 ▶ Watch on YouTube</div>
-                </a>
-                <a href="https://www.youtube.com" target="_blank" class="card-item" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), #032E22;">
-                    <div class="card-label">Movie 02 ▶ Watch on YouTube</div>
-                </a>
-                <a href="https://www.youtube.com" target="_blank" class="card-item" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), #032E22;">
-                    <div class="card-label">Movie 03 ▶ Watch on YouTube</div>
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <!-- 2. GAMES PAGE -->
-    <div id="games" class="page">
-        <section class="hero-section">
-            <h1>Vanvaar Games Hub</h1>
-            <p>Slide and discover immersive gameplay.</p>
-        </section>
-    </div>
-
-    <!-- 3. MOVIES PAGE -->
-    <div id="movies" class="page">
-        <section class="hero-section">
-            <h1>Vanvaar Cinematic Universe</h1>
-            <p>Direct cinematic experiences on YouTube.</p>
-        </section>
-    </div>
-
-    <!-- 4. PROFILE / LOGIN PAGE -->
-    <div id="profile" class="page">
-        <div class="profile-container">
-            <h2>User Account</h2>
-            <form onsubmit="event.preventDefault(); alert('Login synced successfully!');">
-                <input type="text" class="input-box" placeholder="Username or Email" required>
-                <input type="password" class="input-box" placeholder="Password" required>
-                <button type="submit" class="submit-btn">Login / Register</button>
-            </form>
+        <h2 class="section-title">Explore & See Your Favourite Vanvaar Movies</h2>
+        <div class="grid">
+            <div class="card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
+            <div class="card"><span class="card-tag">Movie 02 ► Watch on YouTube</span></div>
+            <div class="card"><span class="card-tag">Movie 03 ► Watch on YouTube</span></div>
         </div>
     </div>
 
-    <!-- MJ Style Footer -->
     <footer>
         <div class="footer-links">
-            <a href="#" onclick="switchPage('home')">HOME</a>
-            <a href="#" onclick="switchPage('games')">GAMES</a>
-            <a href="#" onclick="switchPage('movies')">MOVIES</a>
-            <a href="#" onclick="switchPage('profile')">PROFILE</a>
+            <a href="#">HOME</a> | 
+            <a href="#">GAMES</a> | 
+            <a href="#">MOVIES</a> | 
+            <a href="#">PROFILE</a>
         </div>
-        <div class="copyright">
-            © 2026 Vanvaar Studios, LLC. All Rights Reserved.<br>
-            Privacy Policy | Terms & Conditions | Send Us Feedback
+
+        <!-- Social Media Buttons -->
+        <div class="social-icons">
+            <a href="https://youtube.com/@vanvaar" target="_blank" class="social-icon-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://x.com/realvanvaar" target="_blank" class="social-icon-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://instagram.com/vanvaar" target="_blank" class="social-icon-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com/vanvaar" target="_blank" class="social-icon-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://t.me/vanvaar" target="_blank" class="social-icon-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
         </div>
+
+        <p class="copyright">© 2026 Vanvaar Studios, LLC. All Rights Reserved.</p>
+        <p class="legal-links">Privacy Policy | Terms & Conditions | Send Us Feedback</p>
     </footer>
 
-    <!-- X-Style Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchPage('home')">
-            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span>Home</span>
-        </button>
-        <button class="nav-item" onclick="switchPage('games')">
-            <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v2H6v-2H4v-2h2V9h2v2h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-            <span>Games &amp; Apps</span>
-        </button>
-        <button class="nav-item" onclick="switchPage('movies')">
-            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
-            <span>Movies</span>
-        </button>
-        <button class="nav-item" onclick="switchPage('profile')">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            <span>Profile</span>
-        </button>
-    </nav>
+    <div class="bottom-nav">
+        <a href="#" class="nav-item">🏠 Home</a>
+        <a href="#" class="nav-item">🎮 Games & Apps</a>
+        <a href="#" class="nav-item">🎬 Movies</a>
+        <a href="#" class="nav-item">👤 Profile</a>
+    </div>
 
-    <script>
-        function switchPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.pagesArray = Array.from(pages);
-            pages.forEach(p => p.classList.remove('active-page'));
-
-            // Show selected page
-            document.getElementById(pageId).classList.add('active-page');
-
-            // Scroll to top smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Update active nav button color
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => item.classList.remove('active'));
-            
-            // Match and highlight corresponding bottom nav button
-            if(pageId === 'home') navItems[0].classList.add('active');
-            if(pageId === 'games') navItems[1].classList.add('active');
-            if(pageId === 'movies') navItems[2].classList.add('active');
-            if(pageId === 'profile') navItems[3].classList.add('active');
-        }
-    </script>
 </body>
         </html>
     
