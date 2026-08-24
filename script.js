@@ -1,19 +1,14 @@
-document.querySelectorAll("a[href^='#']").forEach(link => {
+document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('.nav-item');
 
-    link.addEventListener("click", function(event) {
-
-        event.preventDefault();
-
-        const target = document.querySelector(
-            this.getAttribute("href")
-        );
-
-        if (target) {
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove active class from all buttons
+            navItems.forEach(nav => nav.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+        });
     });
-
 });
+                          
