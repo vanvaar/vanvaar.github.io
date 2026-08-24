@@ -11,32 +11,21 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            color: #000000 !important;
-            font-weight: 800 !important;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
-        /* Pure Sky Blue Background */
+        /* Dark Desert Sand Background Gradient */
         body {
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
             padding-bottom: 55px;
-            background: #2b82c9 !important;
+            background: radial-gradient(circle at 50% 30%, #3d2b1f 0%, #261910 50%, #120b06 100%) !important;
+            background-attachment: fixed;
+            color: #f8fafc;
         }
 
-        /* Canvas Bouncing Area */
-        #bounceCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Foreground Website Layers */
+        /* Foreground Setup */
         header, .container, footer, .bottom-nav {
             position: relative;
             z-index: 2;
@@ -48,24 +37,92 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 18px;
-            background: rgba(255, 255, 255, 0.7) !important;
-            border-bottom: 2px solid #000000;
+            background: rgba(30, 18, 10, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(217, 131, 67, 0.2);
         }
 
-        .logo { font-size: 1.1rem; letter-spacing: 1px; }
+        .header-logo {
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #f8fafc;
+        }
+
+        .menu-icon {
+            font-weight: 900;
+            color: #f8fafc;
+            cursor: pointer;
+        }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 30px 15px;
             text-align: center;
         }
 
-        h1 { font-size: 1.8rem; margin-bottom: 5px; }
-        .subtitle { font-size: 1rem; margin-bottom: 25px; }
-        h2.section-title { font-size: 1.3rem; margin: 25px 0 12px 0; text-align: left; }
+        /* ===================================================
+           React Bits "DepthText" Pure CSS/JS Standalone Engine
+           =================================================== */
+        .depth-text-wrapper {
+            perspective: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0 10px 0;
+            min-height: 140px;
+        }
 
-        /* Multi-Page Views */
+        .depth-text-container {
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+            user-select: none;
+            cursor: default;
+        }
+
+        .depth-layer {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(3rem, 12vw, 6.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            white-space: nowrap;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .depth-layer-face {
+            position: relative;
+            font-size: clamp(3rem, 12vw, 6.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            white-space: nowrap;
+            color: #f8fafc;
+            line-height: 1;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+            color: #d1b8a5;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        h2.section-title {
+            font-size: 1.25rem;
+            margin: 30px 0 15px 0;
+            text-align: left;
+            color: #f1e4da;
+            font-weight: 800;
+        }
+
+        /* Multi-Tab Views */
         .tab-content {
             display: none;
         }
@@ -77,92 +134,122 @@
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            gap: 16px;
         }
 
-        /* Solid Crisp Transparent Cards */
+        /* Card Styles */
         .card {
-            background: rgba(255, 255, 255, 0.65) !important;
-            border: 2px solid #000000 !important;
-            border-radius: 10px;
+            background: rgba(45, 29, 18, 0.55) !important;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(217, 131, 67, 0.25) !important;
+            border-radius: 14px;
             height: 180px;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            padding: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(217, 131, 67, 0.5) !important;
         }
 
         .card-tag {
-            background: #ffffff !important;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            border: 1.5px solid #000000;
+            background: rgba(18, 11, 6, 0.85) !important;
+            color: #f8fafc !important;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            border: 1px solid rgba(217, 131, 67, 0.3);
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.75) !important;
-            border: 2px solid #000000;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 15px;
+            background: rgba(45, 29, 18, 0.6) !important;
+            border: 1px solid rgba(217, 131, 67, 0.3);
+            border-radius: 14px;
+            padding: 25px;
+            margin-top: 20px;
+            color: #f8fafc;
         }
 
         /* Footer */
         footer {
-            margin-top: 30px;
-            padding: 20px 15px 70px 15px;
-            background: rgba(255, 255, 255, 0.5) !important;
-            border-top: 2px solid #000000;
+            margin-top: 40px;
+            padding: 25px 15px 75px 15px;
+            background: rgba(18, 11, 6, 0.75) !important;
+            border-top: 1px solid rgba(217, 131, 67, 0.2);
             text-align: center;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 15px;
-            font-size: 0.8rem;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 0.82rem;
         }
 
-        .footer-links a { text-decoration: none; }
+        .footer-links a {
+            color: #d1b8a5 !important;
+            text-decoration: none;
+            font-weight: 700;
+        }
 
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .social-icon-btn {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 38px;
-            height: 38px;
-            background: #ffffff !important;
-            border: 2px solid #000000 !important;
+            width: 40px;
+            height: 40px;
+            background: rgba(45, 29, 18, 0.8) !important;
+            border: 1px solid rgba(217, 131, 67, 0.4) !important;
             border-radius: 50%;
             text-decoration: none;
+            transition: background 0.2s ease;
         }
 
-        .social-icon-btn i { font-size: 1.1rem; }
-        .copyright { font-size: 0.85rem; margin-bottom: 6px; }
-        .legal-links { font-size: 0.8rem; }
+        .social-icon-btn i {
+            font-size: 1.15rem;
+            color: #f8fafc !important;
+        }
 
-        /* Compact Bottom Bar (Height 45px) */
+        .copyright {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: #a89282 !important;
+            font-weight: 600;
+        }
+
+        .legal-links {
+            font-size: 0.8rem;
+            color: #8c7667 !important;
+            font-weight: 600;
+        }
+
+        /* Bottom Navigation Bar (Height: 45px) */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 45px;
-            background: #ffffff !important;
+            background: rgba(18, 11, 6, 0.95) !important;
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-around;
             align-items: center;
-            border-top: 2px solid #000000;
+            border-top: 1px solid rgba(217, 131, 67, 0.3);
             z-index: 100;
         }
 
@@ -177,30 +264,41 @@
         }
 
         .nav-item i {
-            font-size: 1.2rem !important;
-            color: #000000 !important;
+            font-size: 1.25rem !important;
+            color: #a89282 !important;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-item.active i {
+            color: #f8fafc !important;
+            transform: scale(1.15);
         }
 
         .nav-item.active {
-            background: rgba(0, 0, 0, 0.15) !important;
-            border-bottom: 3px solid #000000;
+            border-bottom: 3px solid #d98343;
+            background: rgba(217, 131, 67, 0.1) !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- Bouncing DVD-style 3D Logo Ball Canvas Background -->
-    <canvas id="bounceCanvas"></canvas>
-
     <header>
-        <div class="logo">VANVAAR</div>
+        <div class="header-logo">VANVAAR</div>
         <div class="menu-icon">☰</div>
     </header>
 
     <div class="container">
         <!-- HOME PAGE VIEW -->
         <div id="home" class="tab-content active-tab">
-            <h1>Welcome To Vanvaar Website</h1>
+            
+            <!-- React Bits Animated DepthText Component -->
+            <div class="depth-text-wrapper">
+                <div class="depth-text-container" id="depthTextContainer">
+                    <!-- 34 Extrusion Depth Layers Generated by JS -->
+                    <div class="depth-layer-face">VANVAAR</div>
+                </div>
+            </div>
+
             <p class="subtitle">Stories Beyond Imagination</p>
 
             <h2 class="section-title">Explore Your Favourite Vanvaar Games</h2>
@@ -220,7 +318,7 @@
 
         <!-- GAMES PAGE VIEW -->
         <div id="games" class="tab-content">
-            <h1>Vanvaar Games</h1>
+            <h1 style="font-size: 2.2rem; font-weight: 900; margin-top: 20px;">Vanvaar Games</h1>
             <p class="subtitle">Play Our Latest Indie Games</p>
             <div class="grid">
                 <div class="card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
@@ -231,7 +329,7 @@
 
         <!-- MOVIES PAGE VIEW -->
         <div id="movies" class="tab-content">
-            <h1>Vanvaar Movies & Series</h1>
+            <h1 style="font-size: 2.2rem; font-weight: 900; margin-top: 20px;">Vanvaar Movies</h1>
             <p class="subtitle">Watch Stories Beyond Imagination</p>
             <div class="grid">
                 <div class="card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
@@ -242,11 +340,11 @@
 
         <!-- PROFILE PAGE VIEW -->
         <div id="profile" class="tab-content">
-            <h1>User Profile</h1>
+            <h1 style="font-size: 2.2rem; font-weight: 900; margin-top: 20px;">User Profile</h1>
             <p class="subtitle">Manage Your Account</p>
             <div class="profile-card">
                 <p>Welcome to Vanvaar Studios!</p>
-                <p style="margin-top: 10px; font-size: 0.9rem;">Sign in or sign up options coming soon.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #d1b8a5;">Sign in or sign up options coming soon.</p>
             </div>
         </div>
     </div>
@@ -271,7 +369,7 @@
         <p class="legal-links">Privacy Policy | Terms & Conditions | Send Us Feedback</p>
     </footer>
 
-    <!-- Compact Bottom Navigation Bar -->
+    <!-- Bottom Navigation Bar -->
     <div class="bottom-nav">
         <a class="nav-item active" onclick="openTab('home', this)"><i class="fa-solid fa-house"></i></a>
         <a class="nav-item" onclick="openTab('games', this)"><i class="fa-solid fa-gamepad"></i></a>
@@ -279,9 +377,8 @@
         <a class="nav-item" onclick="openTab('profile', this)"><i class="fa-solid fa-user"></i></a>
     </div>
 
-    <!-- JavaScript Navigation & 3D DVD Ball Physics Logic -->
     <script>
-        // Tab Switch Logic
+        // Bottom Navigation Tab Switch
         function openTab(tabId, element) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active-tab'));
@@ -300,78 +397,94 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // DVD Bounce Ball Canvas Script
-        const canvas = document.getElementById('bounceCanvas');
-        const ctx = canvas.getContext('2d');
+        // =========================================================
+        // DepthText Component Engine (React Bits Specs Implementation)
+        // =========================================================
+        const config = {
+            text: "VANVAAR",
+            layers: 34,
+            depth: 2.4,
+            faceColor: "#f8fafc",
+            depthColor: "#7c3aed",
+            tilt: 7.5,
+            smoothing: 0.14,
+            autoOrbit: true,
+            orbitSpeed: 0.35
+        };
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        const container = document.getElementById('depthTextContainer');
 
-        // 3D Sphere Ball Properties
-        const radius = 45;
-        let x = Math.random() * (canvas.width - radius * 2) + radius;
-        let y = Math.random() * (canvas.height - radius * 2) + radius;
-        let dx = 2.5;
-        let dy = 2.5;
+        // Dynamically build 34 depth extrusions behind front face
+        for (let i = config.layers; i >= 1; i--) {
+            const layer = document.createElement('div');
+            layer.className = 'depth-layer';
+            layer.innerText = config.text;
 
-        function draw3DBall() {
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            const progress = i / config.layers;
+            const translateZ = -i * config.depth;
             
-            // 3D Ball Lighting Gradient
-            let grad = ctx.createRadialGradient(x - radius * 0.3, y - radius * 0.3, radius * 0.1, x, y, radius);
-            grad.addColorStop(0, '#333333');
-            grad.addColorStop(0.7, '#111111');
-            grad.addColorStop(1, '#000000');
+            // Purple gradient tone shift according to depth
+            layer.style.color = config.depthColor;
+            layer.style.opacity = (1 - progress * 0.4).toString();
+            layer.style.transform = `translateX(-50%) translateZ(${translateZ}px)`;
             
-            ctx.fillStyle = grad;
-            ctx.shadowColor = 'rgba(0,0,0,0.4)';
-            ctx.shadowBlur = 15;
-            ctx.shadowOffsetX = 5;
-            ctx.shadowOffsetY = 5;
-            ctx.fill();
-            ctx.restore();
-
-            // Red Outer Logo Border Frame
-            ctx.save();
-            ctx.strokeStyle = '#d32f2f';
-            ctx.lineWidth = 3;
-            ctx.strokeRect(x - 32, y - 16, 64, 32);
-
-            // VANVAAR Logo Text Printed On Sphere
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'italic 900 12px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('VANVAAR', x, y + 1);
-            ctx.restore();
+            container.appendChild(layer);
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            draw3DBall();
+        // Motion & Interaction Tracking Variables
+        let targetRotateX = 0;
+        let targetRotateY = 0;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
+        let time = 0;
 
-            // Bounce logic off screen boundaries
-            if (x + radius >= canvas.width || x - radius <= 0) {
-                dx = -dx;
+        // Pointer/Touch tracking calculation
+        window.addEventListener('mousemove', (e) => {
+            const { innerWidth, innerHeight } = window;
+            const x = (e.clientX / innerWidth - 0.5) * 2;
+            const y = (e.clientY / innerHeight - 0.5) * 2;
+            
+            targetRotateY = x * config.tilt * 2;
+            targetRotateX = -y * config.tilt * 2;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                const { innerWidth, innerHeight } = window;
+                const x = (touch.clientX / innerWidth - 0.5) * 2;
+                const y = (touch.clientY / innerHeight - 0.5) * 2;
+                
+                targetRotateY = x * config.tilt * 2;
+                targetRotateX = -y * config.tilt * 2;
             }
-            if (y + radius >= canvas.height || y - radius <= 0) {
-                dy = -dy;
+        });
+
+        // Continuous Render Loop (Auto Orbit + Smooth Interp)
+        function animateDepthText() {
+            time += 0.015 * config.orbitSpeed;
+
+            let orbitX = 0;
+            let orbitY = 0;
+
+            if (config.autoOrbit) {
+                orbitY = Math.sin(time) * config.tilt;
+                orbitX = Math.cos(time * 0.7) * (config.tilt * 0.5);
             }
 
-            x += dx;
-            y += dy;
+            const finalTargetX = targetRotateX + orbitX;
+            const finalTargetY = targetRotateY + orbitY;
 
-            requestAnimationFrame(animate);
+            // Smooth Interpolation
+            currentRotateX += (finalTargetX - currentRotateX) * config.smoothing;
+            currentRotateY += (finalTargetY - currentRotateY) * config.smoothing;
+
+            container.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+
+            requestAnimationFrame(animateDepthText);
         }
 
-        animate();
+        animateDepthText();
     </script>
-
 </body>
 </html>
