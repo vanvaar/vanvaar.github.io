@@ -16,17 +16,16 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        /* Real Blue Sky Background */
+        /* Clean Solid Sky Background (No Blur) */
         body {
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 70px;
-            background: linear-gradient(180deg, #18529d 0%, #2b77c8 50%, #4b94df 100%) !important;
-            background-attachment: fixed;
+            padding-bottom: 55px;
+            background: #2b82c9 !important;
         }
 
-        /* Continuous Smooth Realistic Clouds */
+        /* Vector Floating Clouds Background */
         .sky-bg {
             position: fixed;
             top: 0;
@@ -38,46 +37,24 @@
             overflow: hidden;
         }
 
-        .cloud-layer {
+        .cloud-svg {
             position: absolute;
-            width: 200%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            filter: blur(25px);
+            fill: #ffffff;
+            opacity: 0.9;
             will-change: transform;
         }
 
-        .c1 {
-            width: 320px;
-            height: 140px;
-            top: 10%;
-            box-shadow: 100px 40px 60px rgba(255,255,255,0.8), 240px 20px 80px rgba(255,255,255,0.7);
-            animation: moveClouds 28s linear infinite;
-        }
+        .c1 { width: 200px; top: 8%; animation: floatCloud 20s linear infinite; }
+        .c2 { width: 280px; top: 30%; animation: floatCloud 32s linear infinite 5s; }
+        .c3 { width: 240px; top: 60%; animation: floatCloud 26s linear infinite 10s; }
+        .c4 { width: 180px; top: 80%; animation: floatCloud 22s linear infinite 3s; }
 
-        .c2 {
-            width: 450px;
-            height: 180px;
-            top: 40%;
-            box-shadow: 120px 50px 70px rgba(255,255,255,0.85), 300px 30px 90px rgba(255,255,255,0.75);
-            animation: moveClouds 42s linear infinite 8s;
-        }
-
-        .c3 {
-            width: 360px;
-            height: 130px;
-            top: 70%;
-            box-shadow: 90px 30px 50px rgba(255,255,255,0.8), 200px 20px 60px rgba(255,255,255,0.7);
-            animation: moveClouds 34s linear infinite 16s;
-        }
-
-        @keyframes moveClouds {
-            0% { transform: translate3d(-500px, 0, 0); }
+        @keyframes floatCloud {
+            0% { transform: translate3d(-300px, 0, 0); }
             100% { transform: translate3d(100vw, 0, 0); }
         }
 
-        /* Content Layer Above Clouds */
+        /* Content Stack */
         header, .container, footer, .bottom-nav {
             position: relative;
             z-index: 2;
@@ -88,67 +65,83 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.45) !important;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.7) !important;
+            border-bottom: 2px solid #000000;
         }
 
-        .logo { font-size: 1.2rem; letter-spacing: 1px; }
+        .logo { font-size: 1.1rem; letter-spacing: 1px; }
 
-        /* Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 25px 15px;
+            padding: 20px 15px;
             text-align: center;
         }
 
-        h1 { font-size: 2rem; margin-bottom: 6px; }
-        .subtitle { font-size: 1.1rem; margin-bottom: 30px; }
-        h2.section-title { font-size: 1.4rem; margin: 30px 0 15px 0; text-align: left; }
+        h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .subtitle { font-size: 1rem; margin-bottom: 25px; }
+        h2.section-title { font-size: 1.3rem; margin: 25px 0 12px 0; text-align: left; }
+
+        /* Multi-Page Views for Bottom Navigation */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active-tab {
+            display: block;
+        }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
 
-        /* Fully Transparent Content Card Containers */
+        /* Solid Crisp White Cards (No Blur Filters) */
         .card {
-            background: rgba(255, 255, 255, 0.35) !important;
+            background: rgba(255, 255, 255, 0.65) !important;
             border: 2px solid #000000 !important;
-            border-radius: 12px;
-            height: 200px;
+            border-radius: 10px;
+            height: 180px;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .card-tag {
-            background: rgba(255, 255, 255, 0.95) !important;
+            background: #ffffff !important;
             padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.85rem;
-            border: 1px solid #000000;
+            font-size: 0.8rem;
+            border: 1.5px solid #000000;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.75) !important;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
         }
 
         /* Footer */
         footer {
-            margin-top: 40px;
-            padding: 25px 20px 80px 20px;
-            background: rgba(255, 255, 255, 0.4) !important;
-            border-top: 2px solid rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+            padding: 20px 15px 70px 15px;
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-top: 2px solid #000000;
             text-align: center;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
         }
 
         .footer-links a { text-decoration: none; }
@@ -156,36 +149,34 @@
         .social-icons {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
         .social-icon-btn {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.9) !important;
+            width: 38px;
+            height: 38px;
+            background: #ffffff !important;
             border: 2px solid #000000 !important;
             border-radius: 50%;
             text-decoration: none;
         }
 
-        .social-icon-btn i { font-size: 1.3rem; }
+        .social-icon-btn i { font-size: 1.1rem; }
+        .copyright { font-size: 0.85rem; margin-bottom: 6px; }
+        .legal-links { font-size: 0.8rem; }
 
-        .copyright { font-size: 0.9rem; margin-bottom: 8px; }
-        .legal-links { font-size: 0.85rem; }
-
-        /* Pure Black Vector Icon Only Bottom Navigation Bar */
+        /* Compact Sleek Bottom Bar (Height 45px) */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.9) !important;
+            height: 45px;
+            background: #ffffff !important;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -201,31 +192,27 @@
             width: 25%;
             height: 100%;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease;
         }
 
         .nav-item i {
-            font-size: 1.5rem !important;
+            font-size: 1.2rem !important;
             color: #000000 !important;
         }
 
         .nav-item.active {
-            background: rgba(0, 0, 0, 0.1) !important;
-            border-bottom: 4px solid #000000;
-        }
-
-        .nav-item:active {
-            transform: scale(0.9);
+            background: rgba(0, 0, 0, 0.15) !important;
+            border-bottom: 3px solid #000000;
         }
     </style>
 </head>
 <body>
 
-    <!-- Continuous Smooth Realistic Clouds -->
+    <!-- Sharp Vector Cloud Background Animation -->
     <div class="sky-bg">
-        <div class="cloud-layer c1"></div>
-        <div class="cloud-layer c2"></div>
-        <div class="cloud-layer c3"></div>
+        <svg class="cloud-svg c1" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <svg class="cloud-svg c2" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <svg class="cloud-svg c3" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <svg class="cloud-svg c4" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
     </div>
 
     <header>
@@ -234,30 +221,65 @@
     </header>
 
     <div class="container">
-        <h1>Welcome To Vanvaar Website</h1>
-        <p class="subtitle">Stories Beyond Imagination</p>
+        <!-- HOME PAGE VIEW -->
+        <div id="home" class="tab-content active-tab">
+            <h1>Welcome To Vanvaar Website</h1>
+            <p class="subtitle">Stories Beyond Imagination</p>
 
-        <h2 class="section-title">Explore Your Favourite Vanvaar Games</h2>
-        <div class="grid">
-            <div class="card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
-            <div class="card"><span class="card-tag">Game 02 (Coming Soon)</span></div>
-            <div class="card"><span class="card-tag">Game 03 (Coming Soon)</span></div>
+            <h2 class="section-title">Explore Your Favourite Vanvaar Games</h2>
+            <div class="grid">
+                <div class="card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
+                <div class="card"><span class="card-tag">Game 02 (Coming Soon)</span></div>
+                <div class="card"><span class="card-tag">Game 03 (Coming Soon)</span></div>
+            </div>
+
+            <h2 class="section-title">Explore & See Your Favourite Vanvaar Movies</h2>
+            <div class="grid">
+                <div class="card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
+                <div class="card"><span class="card-tag">Movie 02 ► Watch on YouTube</span></div>
+                <div class="card"><span class="card-tag">Movie 03 ► Watch on YouTube</span></div>
+            </div>
         </div>
 
-        <h2 class="section-title">Explore & See Your Favourite Vanvaar Movies</h2>
-        <div class="grid">
-            <div class="card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
-            <div class="card"><span class="card-tag">Movie 02 ► Watch on YouTube</span></div>
-            <div class="card"><span class="card-tag">Movie 03 ► Watch on YouTube</span></div>
+        <!-- GAMES PAGE VIEW -->
+        <div id="games" class="tab-content">
+            <h1>Vanvaar Games</h1>
+            <p class="subtitle">Play Our Latest Indie Games</p>
+            <div class="grid">
+                <div class="card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
+                <div class="card"><span class="card-tag">Game 02 (Coming Soon)</span></div>
+                <div class="card"><span class="card-tag">Game 03 (Coming Soon)</span></div>
+            </div>
+        </div>
+
+        <!-- MOVIES PAGE VIEW -->
+        <div id="movies" class="tab-content">
+            <h1>Vanvaar Movies & Series</h1>
+            <p class="subtitle">Watch Stories Beyond Imagination</p>
+            <div class="grid">
+                <div class="card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
+                <div class="card"><span class="card-tag">Movie 02 ► Watch on YouTube</span></div>
+                <div class="card"><span class="card-tag">Movie 03 ► Watch on YouTube</span></div>
+            </div>
+        </div>
+
+        <!-- PROFILE PAGE VIEW -->
+        <div id="profile" class="tab-content">
+            <h1>User Profile</h1>
+            <p class="subtitle">Manage Your Account</p>
+            <div class="profile-card">
+                <p>Welcome to Vanvaar Studios!</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Sign in or sign up options coming soon.</p>
+            </div>
         </div>
     </div>
 
     <footer>
         <div class="footer-links">
-            <a href="#">HOME</a> | 
-            <a href="#">GAMES</a> | 
-            <a href="#">MOVIES</a> | 
-            <a href="#">PROFILE</a>
+            <a href="javascript:void(0)" onclick="openTab('home')">HOME</a> | 
+            <a href="javascript:void(0)" onclick="openTab('games')">GAMES</a> | 
+            <a href="javascript:void(0)" onclick="openTab('movies')">MOVIES</a> | 
+            <a href="javascript:void(0)" onclick="openTab('profile')">PROFILE</a>
         </div>
 
         <div class="social-icons">
@@ -272,20 +294,35 @@
         <p class="legal-links">Privacy Policy | Terms & Conditions | Send Us Feedback</p>
     </footer>
 
-    <!-- Bottom Navigation Icons Only -->
+    <!-- Compact Bottom Navigation Bar -->
     <div class="bottom-nav">
-        <a href="#home" class="nav-item active" onclick="switchTab(this)"><i class="fa-solid fa-house"></i></a>
-        <a href="#games" class="nav-item" onclick="switchTab(this)"><i class="fa-solid fa-gamepad"></i></a>
-        <a href="#movies" class="nav-item" onclick="switchTab(this)"><i class="fa-solid fa-film"></i></a>
-        <a href="#profile" class="nav-item" onclick="switchTab(this)"><i class="fa-solid fa-user"></i></a>
+        <a class="nav-item active" onclick="openTab('home', this)"><i class="fa-solid fa-house"></i></a>
+        <a class="nav-item" onclick="openTab('games', this)"><i class="fa-solid fa-gamepad"></i></a>
+        <a class="nav-item" onclick="openTab('movies', this)"><i class="fa-solid fa-film"></i></a>
+        <a class="nav-item" onclick="openTab('profile', this)"><i class="fa-solid fa-user"></i></a>
     </div>
 
+    <!-- JavaScript For Switching Tabs -->
     <script>
-        function switchTab(element) {
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
+        function openTab(tabId, element) {
+            // Hide all tab views
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+
+            // Show selected tab view
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active-tab');
+            }
+
+            // Update bottom navigation bar active state
+            if (element) {
+                const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+                navItems.forEach(item => item.classList.remove('active'));
+                element.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 
