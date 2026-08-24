@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANVAAR</title>
-    <!-- FontAwesome 6.5.1 CDN -->
+    <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -16,17 +16,17 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        /* Realistic Sky Motion Background */
+        /* Sky Background */
         body {
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 60px;
-            background: linear-gradient(180deg, #1b5396 0%, #3075c6 50%, #4b92df 100%) !important;
+            padding-bottom: 70px;
+            background: linear-gradient(180deg, #1e5799 0%, #2989d8 50%, #7db9e8 100%) !important;
             background-attachment: fixed;
         }
 
-        /* Animated Soft Cloud Flow */
+        /* Smooth Hardware-Accelerated Clouds Container */
         .sky-bg {
             position: fixed;
             top: 0;
@@ -34,51 +34,62 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
 
         .cloud {
             position: absolute;
-            background: rgba(255, 255, 255, 0.75);
-            border-radius: 100px;
-            filter: blur(15px);
+            fill: rgba(255, 255, 255, 0.85);
+            will-change: transform;
         }
 
+        /* Sharp Vector Clouds Movement */
         .cloud-1 {
-            width: 350px;
-            height: 120px;
-            top: 15%;
-            left: -350px;
-            box-shadow: 60px 40px 50px rgba(255,255,255,0.8), 150px 20px 70px rgba(255,255,255,0.7);
-            animation: cloudMove 25s linear infinite;
+            width: 220px;
+            top: 10%;
+            animation: moveSmooth 22s linear infinite;
         }
 
         .cloud-2 {
-            width: 500px;
-            height: 150px;
-            top: 45%;
-            left: -500px;
-            box-shadow: 80px 50px 60px rgba(255,255,255,0.85), 200px 30px 80px rgba(255,255,255,0.75);
-            animation: cloudMove 38s linear infinite 7s;
+            width: 320px;
+            top: 35%;
+            animation: moveSmooth 35s linear infinite 5s;
         }
 
-        @keyframes cloudMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(100vw + 600px)); }
+        .cloud-3 {
+            width: 260px;
+            top: 65%;
+            animation: moveSmooth 28s linear infinite 12s;
         }
 
+        @keyframes moveSmooth {
+            0% {
+                transform: translate3d(-350px, 0, 0);
+            }
+            100% {
+                transform: translate3d(calc(100vw + 350px), 0, 0);
+            }
+        }
+
+        /* Content Layer above Clouds */
+        header, .container, footer, .bottom-nav {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header Bar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.45) !important;
-            backdrop-filter: blur(8px);
-            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.55) !important;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.25);
         }
 
         .logo { font-size: 1.2rem; letter-spacing: 1px; }
 
+        /* Main Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -87,17 +98,19 @@
         }
 
         h1 { font-size: 2rem; margin-bottom: 6px; }
-        .subtitle { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.95; }
+        .subtitle { font-size: 1.1rem; margin-bottom: 30px; }
         h2.section-title { font-size: 1.4rem; margin: 30px 0 15px 0; text-align: left; }
 
+        /* Grid Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 15px;
         }
 
+        /* Transparent Clear Cards */
         .card {
-            background: rgba(255, 255, 255, 0.35) !important;
+            background: rgba(255, 255, 255, 0.4) !important;
             border: 2px solid #000000 !important;
             border-radius: 12px;
             height: 200px;
@@ -105,24 +118,23 @@
             align-items: flex-end;
             justify-content: center;
             padding: 15px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .card-tag {
-            background: rgba(255, 255, 255, 0.9) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
             padding: 6px 12px;
             border-radius: 6px;
             font-size: 0.85rem;
             border: 1px solid #000000;
         }
 
+        /* Footer */
         footer {
             margin-top: 40px;
             padding: 25px 20px 80px 20px;
-            background: rgba(255, 255, 255, 0.4) !important;
-            backdrop-filter: blur(8px);
-            border-top: 2px solid rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-top: 2px solid rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
@@ -150,7 +162,7 @@
             align-items: center;
             width: 44px;
             height: 44px;
-            background: rgba(255, 255, 255, 0.85) !important;
+            background: rgba(255, 255, 255, 0.9) !important;
             border: 2px solid #000000 !important;
             border-radius: 50%;
             text-decoration: none;
@@ -161,18 +173,18 @@
         .copyright { font-size: 0.9rem; margin-bottom: 8px; }
         .legal-links { font-size: 0.85rem; }
 
+        /* Fixed Bottom Mobile Nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 60px;
-            background: rgba(255, 255, 255, 0.75) !important;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85) !important;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            border-top: 2px solid rgba(0, 0, 0, 0.2);
+            border-top: 2px solid rgba(0, 0, 0, 0.25);
             z-index: 100;
         }
 
@@ -187,9 +199,11 @@
 </head>
 <body>
 
+    <!-- Crisp Sharp Vector Cloud Animation Background -->
     <div class="sky-bg">
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
+        <svg class="cloud cloud-1" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <svg class="cloud cloud-2" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+        <svg class="cloud cloud-3" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
     </div>
 
     <header>
