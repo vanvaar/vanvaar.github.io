@@ -7,7 +7,6 @@
     <!-- FontAwesome 6.5.1 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Global Reset & Pure Black Bold Typography */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,29 +16,57 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
+        /* Realistic Sky Motion Background */
         body {
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
             padding-bottom: 60px;
-            background: #2989d8;
+            background: linear-gradient(180deg, #1b5396 0%, #3075c6 50%, #4b92df 100%) !important;
+            background-attachment: fixed;
         }
 
-        /* Fullscreen Video Background */
-        #bg-video {
+        /* Animated Soft Cloud Flow */
+        .sky-bg {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        /* Top Navigation Header */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 100px;
+            filter: blur(15px);
+        }
+
+        .cloud-1 {
+            width: 350px;
+            height: 120px;
+            top: 15%;
+            left: -350px;
+            box-shadow: 60px 40px 50px rgba(255,255,255,0.8), 150px 20px 70px rgba(255,255,255,0.7);
+            animation: cloudMove 25s linear infinite;
+        }
+
+        .cloud-2 {
+            width: 500px;
+            height: 150px;
+            top: 45%;
+            left: -500px;
+            box-shadow: 80px 50px 60px rgba(255,255,255,0.85), 200px 30px 80px rgba(255,255,255,0.75);
+            animation: cloudMove 38s linear infinite 7s;
+        }
+
+        @keyframes cloudMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 600px)); }
+        }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -50,12 +77,8 @@
             border-bottom: 2px solid rgba(0, 0, 0, 0.2);
         }
 
-        .logo {
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-        }
+        .logo { font-size: 1.2rem; letter-spacing: 1px; }
 
-        /* Main Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -63,24 +86,10 @@
             text-align: center;
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 6px;
-        }
+        h1 { font-size: 2rem; margin-bottom: 6px; }
+        .subtitle { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.95; }
+        h2.section-title { font-size: 1.4rem; margin: 30px 0 15px 0; text-align: left; }
 
-        .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        h2.section-title {
-            font-size: 1.4rem;
-            margin: 30px 0 15px 0;
-            text-align: left;
-        }
-
-        /* Grid & Cards Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -98,11 +107,6 @@
             padding: 15px;
             backdrop-filter: blur(5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
         }
 
         .card-tag {
@@ -113,7 +117,6 @@
             border: 1px solid #000000;
         }
 
-        /* Footer Section */
         footer {
             margin-top: 40px;
             padding: 25px 20px 80px 20px;
@@ -131,11 +134,8 @@
             font-size: 0.85rem;
         }
 
-        .footer-links a {
-            text-decoration: none;
-        }
+        .footer-links a { text-decoration: none; }
 
-        /* Social Media Icons Styling */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -154,28 +154,13 @@
             border: 2px solid #000000 !important;
             border-radius: 50%;
             text-decoration: none;
-            transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .social-icon-btn i {
-            font-size: 1.3rem;
-        }
+        .social-icon-btn i { font-size: 1.3rem; }
 
-        .social-icon-btn:hover {
-            transform: scale(1.15);
-            background: #ffffff !important;
-        }
+        .copyright { font-size: 0.9rem; margin-bottom: 8px; }
+        .legal-links { font-size: 0.85rem; }
 
-        .copyright {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .legal-links {
-            font-size: 0.85rem;
-        }
-
-        /* Bottom Mobile Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -202,10 +187,10 @@
 </head>
 <body>
 
-    <!-- Video Background Tag -->
-    <video autoplay loop muted playsinline id="bg-video">
-        <source src="sky.mp4" type="video/mp4">
-    </video>
+    <div class="sky-bg">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+    </div>
 
     <header>
         <div class="logo">VANVAAR</div>
@@ -239,7 +224,6 @@
             <a href="#">PROFILE</a>
         </div>
 
-        <!-- Social Media Buttons -->
         <div class="social-icons">
             <a href="https://youtube.com/@vanvaar" target="_blank" class="social-icon-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://x.com/realvanvaar" target="_blank" class="social-icon-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
