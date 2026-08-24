@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANVAAR</title>
-    <!-- FontAwesome for Social Media Logos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome 6.5.1 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* Global Reset & Pure Black Bold Typography */
         * {
@@ -17,17 +17,29 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        /* Sky Background & Smooth Cloud Drift */
         body {
-            background: linear-gradient(180deg, #19547b 0%, #2989d8 45%, #87ceeb 100%) !important;
-            background-attachment: fixed;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 70px;
+            padding-bottom: 60px;
+            background: #2989d8;
         }
 
-        /* Top Navigation */
+        /* Fullscreen Video Background */
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        /* Top Navigation Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -104,7 +116,7 @@
         /* Footer Section */
         footer {
             margin-top: 40px;
-            padding: 25px 20px;
+            padding: 25px 20px 80px 20px;
             background: rgba(255, 255, 255, 0.4) !important;
             backdrop-filter: blur(8px);
             border-top: 2px solid rgba(0, 0, 0, 0.15);
@@ -128,7 +140,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
             margin-bottom: 20px;
         }
 
@@ -170,7 +182,7 @@
             left: 0;
             width: 100%;
             height: 60px;
-            background: rgba(255, 255, 255, 0.7) !important;
+            background: rgba(255, 255, 255, 0.75) !important;
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-around;
@@ -186,38 +198,14 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* CSS Sky Clouds Animation Overlay */
-        body::before, body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        body::before {
-            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 65%),
-                        radial-gradient(circle at 40% 30%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 55%);
-            animation: moveClouds 35s linear infinite;
-        }
-
-        body::after {
-            background: radial-gradient(circle at 75% 60%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%);
-            animation: moveClouds 50s linear infinite reverse;
-        }
-
-        @keyframes moveClouds {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
     </style>
 </head>
 <body>
+
+    <!-- Video Background Tag -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="sky.mp4" type="video/mp4">
+    </video>
 
     <header>
         <div class="logo">VANVAAR</div>
@@ -272,5 +260,4 @@
     </div>
 
 </body>
-        </html>
-    
+</html>
