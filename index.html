@@ -15,16 +15,33 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Natural Desert Sand Background */
+        /* Sand Gel-Illusion Fluid Animated Background */
         body {
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
             padding-bottom: 55px;
-            background: #B88E65 !important;
+            background: radial-gradient(circle at 50% 50%, #C89F77 0%, #B88E65 50%, #A47A52 100%) !important;
+            background-size: 200% 200%;
+            animation: gelLiquidMotion 16s ease-in-out infinite alternate;
             color: #2D1E12;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        @keyframes gelLiquidMotion {
+            0% {
+                background-position: 0% 20%;
+                filter: contrast(100%) brightness(100%);
+            }
+            50% {
+                background-position: 100% 80%;
+                filter: contrast(105%) brightness(102%);
+            }
+            100% {
+                background-position: 30% 100%;
+                filter: contrast(100%) brightness(98%);
+            }
         }
 
         /* Header Bar */
@@ -33,10 +50,10 @@
             justify-content: space-between;
             align-items: center;
             padding: 14px 20px;
-            background: rgba(90, 60, 35, 0.25) !important;
+            background: rgba(90, 60, 35, 0.2) !important;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 10;
         }
@@ -65,7 +82,7 @@
         }
 
         /* ===================================================
-           Ultra Smooth Hardware-Accelerated 3D DepthText Engine
+           Non-Stop 60FPS Smooth 3D DepthText Engine
            =================================================== */
         .depth-text-wrapper {
             perspective: 1000px;
@@ -103,9 +120,9 @@
             font-weight: 900;
             letter-spacing: -2px;
             white-space: nowrap;
-            color: #F4E3D3; /* Light Brown Face Tone */
+            color: #F4E3D3; /* Light Desert Brown Face Tone */
             line-height: 1;
-            filter: drop-shadow(0 15px 25px rgba(45, 30, 18, 0.4));
+            filter: drop-shadow(0 15px 25px rgba(45, 30, 18, 0.35));
             will-change: transform;
         }
 
@@ -152,8 +169,8 @@
             align-items: flex-end;
             justify-content: center;
             padding: 14px;
-            box-shadow: 0 8px 20px rgba(45, 30, 18, 0.15);
-            transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 8px 20px rgba(45, 30, 18, 0.12);
+            transition: transform 0.25s ease, background 0.25s ease;
         }
 
         .card:hover {
@@ -184,7 +201,7 @@
         footer {
             margin-top: 40px;
             padding: 25px 15px 75px 15px;
-            background: rgba(65, 42, 24, 0.25) !important;
+            background: rgba(65, 42, 24, 0.2) !important;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
             position: relative;
@@ -409,22 +426,21 @@
         }
 
         // =========================================================
-        // High Performance Slow 3D DepthText Engine
+        // Infinite Smooth 3D DepthText Orbit Engine
         // =========================================================
         const config = {
             text: "VANVAAR",
-            layers: 20, // Optimized layer count to ensure zero lag
+            layers: 18,
             depth: 2.0,
             depthColor: "#7c3aed",
-            tilt: 6.0,
-            smoothing: 0.08, // Extra smooth lerp
-            autoOrbit: true,
-            orbitSpeed: 0.12 // Dheere slow motion spin
+            tilt: 7.0,
+            smoothing: 0.05, 
+            orbitSpeed: 0.8
         };
 
         const container = document.getElementById('depthTextContainer');
 
-        // Dynamically build extruded 3D text depth layers
+        // Generate 3D Extrusion Depth Layers
         for (let i = config.layers; i >= 1; i--) {
             const layer = document.createElement('div');
             layer.className = 'depth-layer';
@@ -440,57 +456,47 @@
             container.appendChild(layer);
         }
 
-        let targetRotateX = 0;
-        let targetRotateY = 0;
         let currentRotateX = 0;
         let currentRotateY = 0;
+        let mouseX = 0;
+        let mouseY = 0;
         let time = 0;
 
-        // Pointer Motion Listener
+        // Pointer Motion Interaction
         window.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 2;
-            const y = (e.clientY / window.innerHeight - 0.5) * 2;
-            
-            targetRotateY = x * config.tilt * 1.5;
-            targetRotateX = -y * config.tilt * 1.5;
+            mouseX = (e.clientX / window.innerWidth - 0.5) * config.tilt;
+            mouseY = -(e.clientY / window.innerHeight - 0.5) * config.tilt;
         }, { passive: true });
 
         window.addEventListener('touchmove', (e) => {
             if (e.touches.length > 0) {
                 const touch = e.touches[0];
-                const x = (touch.clientX / window.innerWidth - 0.5) * 2;
-                const y = (touch.clientY / window.innerHeight - 0.5) * 2;
-                
-                targetRotateY = x * config.tilt * 1.5;
-                targetRotateX = -y * config.tilt * 1.5;
+                mouseX = (touch.clientX / window.innerWidth - 0.5) * config.tilt;
+                mouseY = -(touch.clientY / window.innerHeight - 0.5) * config.tilt;
             }
         }, { passive: true });
 
-        // Hardware-Accelerated Animation Loop
+        // Continuous Non-stop Render Loop
         function animateDepthText() {
-            time += 0.01 * config.orbitSpeed;
+            time += 0.012 * config.orbitSpeed;
 
-            let orbitX = 0;
-            let orbitY = 0;
+            // Continuous Infinite Sine/Cosine Motion Loop
+            const orbitY = Math.sin(time) * config.tilt;
+            const orbitX = Math.cos(time * 0.7) * (config.tilt * 0.6);
 
-            if (config.autoOrbit) {
-                orbitY = Math.sin(time) * config.tilt;
-                orbitX = Math.cos(time * 0.7) * (config.tilt * 0.5);
-            }
+            const targetX = mouseY + orbitX;
+            const targetY = mouseX + orbitY;
 
-            const finalTargetX = targetRotateX + orbitX;
-            const finalTargetY = targetRotateY + orbitY;
-
-            // Smooth Interpolation
-            currentRotateX += (finalTargetX - currentRotateX) * config.smoothing;
-            currentRotateY += (finalTargetY - currentRotateY) * config.smoothing;
+            // Interpolation for silky smooth frame rendering
+            currentRotateX += (targetX - currentRotateX) * config.smoothing;
+            currentRotateY += (targetY - currentRotateY) * config.smoothing;
 
             container.style.transform = `rotateX(${currentRotateX.toFixed(3)}deg) rotateY(${currentRotateY.toFixed(3)}deg)`;
 
             requestAnimationFrame(animateDepthText);
         }
 
-        // Start animation loop
+        // Start render frame loop
         requestAnimationFrame(animateDepthText);
     </script>
 </body>
