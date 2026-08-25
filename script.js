@@ -1,3 +1,4 @@
+// Auto-update copyright year
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ---------- VIEW SWITCHING ---------- */
@@ -12,7 +13,7 @@ function showView(name) {
   closeMenu();
 }
 
-// हर element जिसमें data-view हो, उस पर क्लिक करने से view बदलेगी
+// Attach event listener to all elements with data-view
 document.querySelectorAll('[data-view]').forEach(el => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
@@ -58,8 +59,8 @@ menuToggle.addEventListener('click', openMenu);
 menuClose.addEventListener('click', closeMenu);
 menuOverlay.addEventListener('click', closeMenu);
 
-/* ---------- TOPBAR SHADOW ON SCROLL (हल्का polish) ---------- */
+/* ---------- TOPBAR SHADOW ON SCROLL ---------- */
 const topbar = document.getElementById('topbar');
 window.addEventListener('scroll', () => {
-  topbar.style.boxShadow = window.scrollY > 10 ? '0 2px 10px rgba(0,0,0,0.3)' : 'none';
+  topbar.style.boxShadow = window.scrollY > 10 ? '0 2px 12px rgba(0,0,0,0.4)' : 'none';
 }, { passive: true });
