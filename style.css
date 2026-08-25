@@ -1,3 +1,9 @@
+@property --neon-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,7 +21,7 @@ body {
     color: #2D1E12;
 }
 
-/* Liquid Gel Illusion Background */
+/* Dynamic Gel Illusion Background */
 .gel-background {
     position: fixed;
     top: 0;
@@ -109,7 +115,7 @@ header {
     z-index: 2;
 }
 
-/* Continuous Slow Animate VANVAAR 3D Text */
+/* Continuous 3D Text Animation */
 .depth-text-wrapper {
     perspective: 800px;
     display: flex;
@@ -190,13 +196,12 @@ header {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 14px;
+    gap: 16px;
 }
 
 .card {
     background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
+    border-radius: 20px;
     height: 160px;
     display: flex;
     align-items: flex-end;
@@ -204,21 +209,80 @@ header {
     padding: 12px;
 }
 
+.profile-card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+/* Originkit Animated Neon Glow Border */
+.neon-card {
+    position: relative;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    isolation: isolate;
+}
+
+.neon-card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 23px;
+    padding: 3px;
+    background: conic-gradient(
+        from var(--neon-angle),
+        #CC9149 0deg,
+        #FFEAA7 60deg,
+        transparent 120deg,
+        transparent 180deg,
+        #CC9149 240deg,
+        #FFEAA7 300deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    animation: rotateNeon 10s linear infinite;
+    pointer-events: none;
+}
+
+.neon-card::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 24px;
+    background: conic-gradient(
+        from var(--neon-angle),
+        rgba(204, 145, 73, 0.6) 0deg,
+        rgba(255, 234, 167, 0.6) 60deg,
+        transparent 120deg,
+        transparent 180deg,
+        rgba(204, 145, 73, 0.6) 240deg,
+        rgba(255, 234, 167, 0.6) 300deg,
+        transparent 360deg
+    );
+    filter: blur(12px);
+    z-index: -2;
+    animation: rotateNeon 10s linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+@keyframes rotateNeon {
+    to {
+        --neon-angle: 360deg;
+    }
+}
+
 .card-tag {
     background: rgba(45, 30, 18, 0.85);
     color: #f7ebd9;
     padding: 6px 14px;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 0.8rem;
     font-weight: 700;
-}
-
-.profile-card {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 15px;
 }
 
 footer {
@@ -241,7 +305,6 @@ footer {
     font-weight: 700;
 }
 
-/* Social Media Handles Styling */
 .social-icons {
     display: flex;
     justify-content: center;
@@ -285,7 +348,7 @@ footer {
     color: #4A3320;
 }
 
-/* Bottom Bar SVG Fixed Integration */
+/* Bottom Navigation Bar */
 .bottom-nav {
     position: fixed;
     bottom: 0;
