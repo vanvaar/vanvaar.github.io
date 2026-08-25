@@ -1,19 +1,65 @@
-// Tab switching logic for Bottom Navigation
-function openTab(tabId, element) {
-    const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => tab.classList.remove('active-tab'));
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    const targetTab = document.getElementById(tabId);
-    if (targetTab) {
-        targetTab.classList.add('active-tab');
-    }
+/* ---------- VIEW SWITCHING ---------- */
+const views = document.querySelectorAll('.view');
+const tabBtns = document.querySelectorAll('.tab-btn');
 
-    if (element) {
-        const navItems = document.querySelectorAll('.bottom-nav .nav-item');
-        navItems.forEach(item => item.classList.remove('active'));
-        element.classList.add('active');
-    }
+function showView(name) {
+  views.forEach(v => v.classList.toggle('active', v.id === 'view-' + name));
+  tabBtns.forEach(b => b.classList.toggle('active', b.dataset.view === name));
+  document.getElementById('mainContent').scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  window.scrollTo(0, 0);
+  closeMenu();
+}
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-        }
+// हर element जिसमें data-view हो, उस पर क्लिक करने से view बदलेगी
+document.querySelectorAll('[data-view]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    showView(el.dataset.view);
+  });
+});
+
+document.getElementById('logoHome').addEventListener('click', (e) => {
+  e.preventDefault();
+  showView('home');
+});
+
+/* ---------- SEARCH TOGGLE ---------- */
+const searchBox = document.getElementById('searchBox');
+const searchToggle = document.getElementById('searchToggle');
+const searchClose = document.getElementById('searchClose');
+const searchInput = document.getElementById('searchInput');
+
+searchToggle.addEventListener('click', () => {
+  searchBox.classList.add('open');
+  searchInput.focus();
+});
+searchClose.addEventListener('click', () => {
+  searchBox.classList.remove('open');
+  searchInput.value = '';
+});
+
+/* ---------- SIDE MENU ---------- */
+const sideMenu = document.getElementById('sideMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
+
+function openMenu() {
+  sideMenu.classList.add('open');
+  menuOverlay.classList.add('open');
+}
+function closeMenu() {
+  sideMenu.classList.remove('open');
+  menuOverlay.classList.remove('open');
+}
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+/* ---------- TOPBAR SHADOW ON SCROLL (हल्का polish) ---------- */
+const topbar = document.getElementById('topbar');
+window.addEventListener('scroll', () => {
+  topbar.style.boxShadow = window.scrollY > 10 ? '0 2px 10px rgba(0,0,0,0.3)' : 'none';
+}, { passive: true });
