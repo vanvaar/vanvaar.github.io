@@ -1,122 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANVAAR</title>
+
+    <title>VANVAAR — Stories Beyond Imagination</title>
+
+    <meta name="description"
+        content="VANVAAR — Original movies, games and stories.">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <header>
-        <div class="header-logo">VANVAAR</div>
-        <div class="menu-icon">☰</div>
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="brand">
+            VANVAAR
+        </div>
+
+        <button class="menu-button" onclick="toggleMenu()">
+            ☰
+        </button>
+
     </header>
 
-    <main class="container">
-        <!-- HOME PAGE -->
-        <section id="home" class="tab-content active-tab">
-            <div class="depth-text-wrapper">
-                <div class="depth-text-container" id="vanvaarText">
-                    <div class="depth-layer layer-back">VANVAAR</div>
-                    <div class="depth-layer layer-mid">VANVAAR</div>
-                    <div class="depth-layer layer-front">VANVAAR</div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <button onclick="closeMenu(); scrollToSection('home')">
+            HOME
+        </button>
+
+        <button onclick="closeMenu(); scrollToSection('news')">
+            NEWS
+        </button>
+
+        <button onclick="closeMenu(); scrollToSection('games')">
+            GAMES
+        </button>
+
+        <button onclick="closeMenu(); scrollToSection('movies')">
+            MOVIES
+        </button>
+
+    </div>
+
+
+    <main>
+
+
+        <!-- HERO / FEATURED -->
+
+        <section id="home" class="hero">
+
+            <div class="hero-image">
+
+                <div class="hero-overlay"></div>
+
+                <div class="hero-content">
+
+                    <span class="category">
+                        VANVAAR ORIGINAL
+                    </span>
+
+                    <h1>
+                        Stories Beyond Imagination
+                    </h1>
+
+                    <p>
+                        Discover original movies, games and worlds
+                        created by VANVAAR.
+                    </p>
+
+                    <button class="primary-button"
+                        onclick="scrollToSection('news')">
+
+                        EXPLORE NOW →
+
+                    </button>
+
                 </div>
+
             </div>
 
-            <p class="subtitle">Stories Beyond Imagination</p>
-
-            <h2 class="section-title">Explore Your Favourite Vanvaar Games</h2>
-            <div class="grid">
-                <div class="card neon-card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
-                <div class="card neon-card"><span class="card-tag">Game 02 (Coming Soon)</span></div>
-            </div>
-
-            <h2 class="section-title">Explore & See Your Favourite Vanvaar Movies</h2>
-            <div class="grid">
-                <div class="card neon-card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
-                <div class="card neon-card"><span class="card-tag">Movie 02 ► Watch on YouTube</span></div>
-            </div>
         </section>
 
-        <!-- GAMES PAGE -->
-        <section id="games" class="tab-content">
-            <h1 class="page-title">Vanvaar Games</h1>
-            <p class="subtitle">Play Our Latest Indie Games</p>
-            <div class="grid">
-                <div class="card neon-card"><span class="card-tag">Game 01 (Coming Soon)</span></div>
-                <div class="card neon-card"><span class="card-tag">Game 02 (Coming Soon)</span></div>
+
+
+        <!-- LATEST NEWS -->
+
+        <section id="news" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-label">
+                        VANVAAR
+                    </span>
+
+                    <h2>
+                        Latest
+                    </h2>
+                </div>
+
+                <span class="section-line"></span>
+
             </div>
+
+
+            <div class="news-list">
+
+
+                <article class="news-card">
+
+                    <div class="news-image placeholder-image">
+                    </div>
+
+                    <div class="news-content">
+
+                        <span class="news-category">
+                            NEWS
+                        </span>
+
+                        <h3>
+                            Welcome to the VANVAAR Universe
+                        </h3>
+
+                        <p>
+                            Our journey into original stories,
+                            movies and games begins here.
+                        </p>
+
+                        <span class="read-more">
+                            READ MORE →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="news-card">
+
+                    <div class="news-image placeholder-image">
+                    </div>
+
+                    <div class="news-content">
+
+                        <span class="news-category">
+                            GAMES
+                        </span>
+
+                        <h3>
+                            VANVAAR Games Are Coming
+                        </h3>
+
+                        <p>
+                            Original games created inside
+                            the VANVAAR universe.
+                        </p>
+
+                        <span class="read-more">
+                            READ MORE →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="news-card">
+
+                    <div class="news-image placeholder-image">
+                    </div>
+
+                    <div class="news-content">
+
+                        <span class="news-category">
+                            MOVIES
+                        </span>
+
+                        <h3>
+                            Our First Cinematic Stories
+                        </h3>
+
+                        <p>
+                            Discover the worlds and characters
+                            coming from VANVAAR.
+                        </p>
+
+                        <span class="read-more">
+                            READ MORE →
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
         </section>
 
-        <!-- MOVIES PAGE -->
-        <section id="movies" class="tab-content">
-            <h1 class="page-title">Vanvaar Movies</h1>
-            <p class="subtitle">Watch Stories Beyond Imagination</p>
-            <div class="grid">
-                <div class="card neon-card"><span class="card-tag">Movie 01 ► Watch on YouTube</span></div>
-                <div class="card neon-card"><span class="card-tag">Movie 02 ► Watch on YouTube</span></div>
+
+
+        <!-- GAMES -->
+
+        <section id="games" class="section dark-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-label">
+                        PLAY
+                    </span>
+
+                    <h2>
+                        Games
+                    </h2>
+                </div>
+
+                <span class="section-line"></span>
+
             </div>
+
+
+            <div class="horizontal-cards">
+
+                <article class="media-card">
+
+                    <div class="media-image">
+                        <span>
+                            GAME 01
+                        </span>
+                    </div>
+
+                    <div class="media-info">
+
+                        <span>
+                            COMING SOON
+                        </span>
+
+                        <h3>
+                            VANVAAR Game One
+                        </h3>
+
+                    </div>
+
+                </article>
+
+
+                <article class="media-card">
+
+                    <div class="media-image">
+                        <span>
+                            GAME 02
+                        </span>
+                    </div>
+
+                    <div class="media-info">
+
+                        <span>
+                            COMING SOON
+                        </span>
+
+                        <h3>
+                            VANVAAR Game Two
+                        </h3>
+
+                    </div>
+
+                </article>
+
+            </div>
+
         </section>
 
-        <!-- PROFILE PAGE -->
-        <section id="profile" class="tab-content">
-            <h1 class="page-title">Your Vanvaar Profile</h1>
-            <p class="subtitle">Manage Your Account</p>
-            <div class="profile-card neon-card">
-                <p><strong>Welcome to Vanvaar Studios!</strong></p>
-                <p style="margin-top: 8px; font-size: 0.9rem;">Sign in or sign up options coming soon.</p>
+
+
+        <!-- MOVIES -->
+
+        <section id="movies" class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-label">
+                        WATCH
+                    </span>
+
+                    <h2>
+                        Movies
+                    </h2>
+                </div>
+
+                <span class="section-line"></span>
+
             </div>
+
+
+            <div class="movie-grid">
+
+
+                <article class="movie-card">
+
+                    <div class="movie-image">
+
+                        <span>
+                            MOVIE 01
+                        </span>
+
+                    </div>
+
+                    <div class="movie-info">
+
+                        <span>
+                            VANVAAR ORIGINAL
+                        </span>
+
+                        <h3>
+                            Movie One
+                        </h3>
+
+                        <button>
+                            WATCH ON YOUTUBE →
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="movie-card">
+
+                    <div class="movie-image">
+
+                        <span>
+                            MOVIE 02
+                        </span>
+
+                    </div>
+
+                    <div class="movie-info">
+
+                        <span>
+                            VANVAAR ORIGINAL
+                        </span>
+
+                        <h3>
+                            Movie Two
+                        </h3>
+
+                        <button>
+                            WATCH ON YOUTUBE →
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
         </section>
+
+
+
+        <!-- ABOUT -->
+
+        <section class="about-section">
+
+            <span class="small-label">
+                THE STUDIO
+            </span>
+
+            <h2>
+                VANVAAR
+            </h2>
+
+            <p>
+                A home for original stories, cinematic experiences
+                and games created beyond imagination.
+            </p>
+
+        </section>
+
     </main>
 
+
+
+    <!-- FOOTER -->
+
     <footer>
+
+        <div class="footer-brand">
+            VANVAAR
+        </div>
+
         <div class="footer-links">
-            <a href="javascript:void(0)" onclick="openTab('home')">HOME</a> | 
-            <a href="javascript:void(0)" onclick="openTab('games')">GAMES</a> | 
-            <a href="javascript:void(0)" onclick="openTab('movies')">MOVIES</a> | 
-            <a href="javascript:void(0)" onclick="openTab('profile')">PROFILE</a>
+
+            <a href="https://youtube.com/@vanvaar"
+                target="_blank">
+                YouTube
+            </a>
+
+            <a href="https://x.com/realvanvaar"
+                target="_blank">
+                X
+            </a>
+
+            <a href="https://instagram.com/vanvaar"
+                target="_blank">
+                Instagram
+            </a>
+
         </div>
 
-        <!-- Social Media Handles -->
-        <div class="social-icons">
-            <a href="https://youtube.com/@vanvaar" target="_blank" class="social-icon-btn" title="YouTube">
-                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-            <a href="https://x.com/realvanvaar" target="_blank" class="social-icon-btn" title="X (Twitter)">
-                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://instagram.com/vanvaar" target="_blank" class="social-icon-btn" title="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="https://facebook.com/vanvaar" target="_blank" class="social-icon-btn" title="Facebook">
-                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://t.me/vanvaar" target="_blank" class="social-icon-btn" title="Telegram">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-            </a>
-        </div>
+        <p>
+            © 2026 VANVAAR. All Rights Reserved.
+        </p>
 
-        <p class="copyright">© 2026 Vanvaar Studios, LLC. All Rights Reserved.</p>
-        <p class="legal-links">Privacy Policy | Terms & Conditions | Send Us Feedback</p>
     </footer>
 
-    <!-- Fixed Bottom Navigation Bar -->
+
+
+    <!-- BOTTOM NAVIGATION -->
+
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="openTab('home', this)">
-            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+
+        <button onclick="scrollToSection('home')">
+            HOME
         </button>
-        <button class="nav-item" onclick="openTab('games', this)">
-            <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H9v2H7v-2H5v-2h2V9h2v2h2v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+
+        <button onclick="scrollToSection('news')">
+            NEWS
         </button>
-        <button class="nav-item" onclick="openTab('movies', this)">
-            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+
+        <button onclick="scrollToSection('games')">
+            GAMES
         </button>
-        <button class="nav-item" onclick="openTab('profile', this)">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+
+        <button onclick="scrollToSection('movies')">
+            MOVIES
         </button>
+
     </nav>
 
+
     <script src="script.js"></script>
+
 </body>
-</html>
+
+    </html>
