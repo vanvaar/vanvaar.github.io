@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>VANVAAR</title>
-<link rel="icon" href="assets/logo.jpg">
+<link rel="icon" href="./assets/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===================== TOP BAR (fixed, पूरी साइट पर स्थिर) ===================== -->
+<!-- ===================== TOP BAR ===================== -->
 <header class="topbar" id="topbar">
 
-  <button class="icon-btn search-btn" id="searchToggle" aria-label="खोजें">
+  <button class="icon-btn search-btn" id="searchToggle" aria-label="Search">
     <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
   </button>
 
   <div class="search-box" id="searchBox">
-    <input type="text" placeholder="गेम्स, मूवीज़ खोजें..." id="searchInput">
-    <button class="icon-btn" id="searchClose" aria-label="बंद करें">
+    <input type="text" placeholder="Search games, movies..." id="searchInput">
+    <button class="icon-btn" id="searchClose" aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </div>
 
-  <a href="#" class="brand-logo" id="logoHome">
-    <img src="assets/logo.jpg" alt="VANVAAR">
+  <a href="#" class="brand-logo" id="logoHome" aria-label="VANVAAR Home">
+    <img src="./assets/logo.jpg" alt="VANVAAR" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';">
+    <span class="logo-fallback" id="logoFallback">VAN<span class="accent">VAAR</span></span>
   </a>
 
-  <button class="icon-btn menu-btn" id="menuToggle" aria-label="मेन्यू खोलें">
+  <button class="icon-btn menu-btn" id="menuToggle" aria-label="Open Menu">
     <svg viewBox="0 0 24 24" fill="none"><line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
   </button>
 </header>
@@ -39,8 +40,8 @@
 <div class="menu-overlay" id="menuOverlay"></div>
 <nav class="side-menu" id="sideMenu">
   <div class="side-menu-head">
-    <img src="assets/logo.jpg" alt="VANVAAR" class="side-menu-logo">
-    <button class="icon-btn" id="menuClose" aria-label="बंद करें">
+    <div class="side-menu-brand">VAN<span class="accent">VAAR</span></div>
+    <button class="icon-btn" id="menuClose" aria-label="Close Menu">
       <svg viewBox="0 0 24 24" fill="none"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -50,9 +51,9 @@
     <li><a href="#" data-view="login">Login</a></li>
     <li><a href="#" data-view="signup">Sign Up</a></li>
     <li class="divider"></li>
-    <li><a href="#" data-view="profile">Your VANVAAR Profile</a></li>
+    <li><a href="#" data-view="profile">Your Profile</a></li>
     <li><a href="#" data-view="settings">Profile Settings</a></li>
-    <li><a href="#" data-view="purchases">Your Purchased Games</a></li>
+    <li><a href="#" data-view="purchases">Purchased Games</a></li>
   </ul>
 </nav>
 
@@ -65,39 +66,81 @@
     <div class="hero">
       <div class="hero-diagonal"></div>
       <div class="hero-inner">
-        <p class="eyebrow">भारत की मिट्टी से जन्मी ताकत</p>
-        <h1 class="hero-title">VAN<span class="accent">वार</span></h1>
-        <p class="hero-sub">हर वार में एक कहानी। गेम्स और मूवीज़ जो जंगल का जज़्बा लेकर आती हैं।</p>
+        <p class="eyebrow">Born From The Raw Power of Bharat</p>
+        <h1 class="hero-title">VAN<span class="accent">VAAR</span></h1>
+        <p class="hero-sub">Every strike tells a story. Games and movies forged with the raw, untamed spirit of the wild.</p>
       </div>
     </div>
 
+    <!-- Featured Games Row -->
     <div class="row-head">
-      <h2>गेम्स</h2>
-      <a href="#" class="see-all" data-view="games">सभी देखें →</a>
+      <h2>Games</h2>
+      <a href="#" class="see-all" data-view="games">See All →</a>
     </div>
-    <div class="poster-row">
-      <article class="poster-card empty">
-        <div class="poster-media"></div>
-        <h3 class="poster-title">गेम टाइटल</h3>
+    <div class="video-grid">
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Featured Game Title 01</h3>
+          <p class="video-meta">VANVAAR Originals • Action / RPG</p>
+        </div>
       </article>
-      <article class="poster-card empty">
-        <div class="poster-media"></div>
-        <h3 class="poster-title">गेम टाइटल</h3>
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Featured Game Title 02</h3>
+          <p class="video-meta">VANVAAR Originals • Survival</p>
+        </div>
+      </article>
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Featured Game Title 03</h3>
+          <p class="video-meta">VANVAAR Originals • Adventure</p>
+        </div>
+      </article>
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Featured Game Title 04</h3>
+          <p class="video-meta">VANVAAR Originals • Combat</p>
+        </div>
       </article>
     </div>
 
+    <!-- Featured Movies Row -->
     <div class="row-head">
-      <h2>मूवीज़</h2>
-      <a href="#" class="see-all" data-view="movies">सभी देखें →</a>
+      <h2>Movies & Originals</h2>
+      <a href="#" class="see-all" data-view="movies">See All →</a>
     </div>
-    <div class="poster-row">
-      <article class="poster-card empty">
-        <div class="poster-media"></div>
-        <h3 class="poster-title">मूवी टाइटल</h3>
+    <div class="video-grid">
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Original Movie Title 01</h3>
+          <p class="video-meta">Action / Drama • 4K Ultra HD</p>
+        </div>
       </article>
-      <article class="poster-card empty">
-        <div class="poster-media"></div>
-        <h3 class="poster-title">मूवी टाइटल</h3>
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Original Movie Title 02</h3>
+          <p class="video-meta">Thriller / Mystery • 4K Ultra HD</p>
+        </div>
+      </article>
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Original Movie Title 03</h3>
+          <p class="video-meta">Cinematic Universe • Trailer</p>
+        </div>
+      </article>
+      <article class="video-card empty">
+        <div class="video-thumb"></div>
+        <div class="video-info">
+          <h3 class="video-title">Original Movie Title 04</h3>
+          <p class="video-meta">Behind the Scenes • Special Edition</p>
+        </div>
       </article>
     </div>
 
@@ -106,38 +149,40 @@
   <!-- ---------- GAMES VIEW ---------- -->
   <section class="view" id="view-games">
     <div class="page-head">
-      <h2>गेम्स</h2>
-      <p>VANVAAR द्वारा बनाए गए सभी गेम्स</p>
+      <h2>All Games</h2>
+      <p>Explore titles and releases developed by VANVAAR</p>
     </div>
-    <div class="poster-grid">
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">गेम टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">गेम टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">गेम टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">गेम टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">गेम टाइटल</h3></article>
+    <div class="video-grid full-grid">
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Game Title 01</h3><p class="video-meta">Action RPG</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Game Title 02</h3><p class="video-meta">Survival Open World</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Game Title 03</h3><p class="video-meta">Arena Combat</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Game Title 04</h3><p class="video-meta">Cinematic Adventure</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Game Title 05</h3><p class="video-meta">Action Thriller</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Game Title 06</h3><p class="video-meta">Multiplayer Battle</p></div></article>
     </div>
   </section>
 
   <!-- ---------- MOVIES VIEW ---------- -->
   <section class="view" id="view-movies">
     <div class="page-head">
-      <h2>मूवीज़</h2>
-      <p>VANVAAR द्वारा निर्मित सभी मूवीज़</p>
+      <h2>All Movies</h2>
+      <p>Original motion pictures and series produced by VANVAAR</p>
     </div>
-    <div class="poster-grid">
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">मूवी टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">मूवी टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">मूवी टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">मूवी टाइटल</h3></article>
-      <article class="poster-card empty"><div class="poster-media"></div><h3 class="poster-title">मूवी टाइटल</h3></article>
+    <div class="video-grid full-grid">
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Movie Title 01</h3><p class="video-meta">Feature Film • Full HD</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Movie Title 02</h3><p class="video-meta">Action Epic • 4K UHD</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Movie Title 03</h3><p class="video-meta">Original Series • Season 1</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Movie Title 04</h3><p class="video-meta">Documentary Special</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Movie Title 05</h3><p class="video-meta">Action Saga • Part 1</p></div></article>
+      <article class="video-card empty"><div class="video-thumb"></div><div class="video-info"><h3 class="video-title">Movie Title 06</h3><p class="video-meta">Exclusive Premiere</p></div></article>
     </div>
   </section>
 
   <!-- ---------- PROFILE VIEW ---------- -->
   <section class="view" id="view-profile">
     <div class="page-head">
-      <h2>आपकी प्रोफाइल</h2>
-      <p>लॉगिन करने के बाद यहाँ आपकी जानकारी दिखेगी।</p>
+      <h2>Your Profile</h2>
+      <p>Sign in to access your profile, watch history, and game inventory.</p>
     </div>
   </section>
 
@@ -145,43 +190,55 @@
   <section class="view" id="view-about">
     <div class="page-head">
       <h2>About VANVAAR</h2>
-      <p>वन + वार — जंगल की कच्ची ताकत से प्रेरित एक भारतीय एंटरटेनमेंट ब्रांड। हम गेम्स और मूवीज़ बनाते हैं जो बोल्ड, निडर और असली हैं।</p>
+      <p>VAN + VAAR — An entertainment powerhouse inspired by raw strength and fearless heritage. We engineer games and cinematic stories that are bold, relentless, and truly authentic.</p>
     </div>
   </section>
 
   <!-- ---------- LOGIN VIEW ---------- -->
   <section class="view" id="view-login">
-    <div class="page-head"><h2>Login</h2><p>अपने VANVAAR अकाउंट में लॉगिन करें।</p></div>
+    <div class="page-head">
+      <h2>Login</h2>
+      <p>Access your official VANVAAR account.</p>
+    </div>
     <form class="auth-form" onsubmit="return false;">
-      <input type="email" placeholder="ईमेल">
-      <input type="password" placeholder="पासवर्ड">
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Password" required>
       <button class="btn btn-primary" type="submit">Login</button>
     </form>
   </section>
 
   <!-- ---------- SIGNUP VIEW ---------- -->
   <section class="view" id="view-signup">
-    <div class="page-head"><h2>Sign Up</h2><p>नया VANVAAR अकाउंट बनाएं।</p></div>
+    <div class="page-head">
+      <h2>Create Account</h2>
+      <p>Join the VANVAAR universe today.</p>
+    </div>
     <form class="auth-form" onsubmit="return false;">
-      <input type="text" placeholder="यूज़रनेम">
-      <input type="email" placeholder="ईमेल">
-      <input type="password" placeholder="पासवर्ड">
+      <input type="text" placeholder="Username" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Password" required>
       <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>
   </section>
 
   <!-- ---------- SETTINGS VIEW ---------- -->
   <section class="view" id="view-settings">
-    <div class="page-head"><h2>Profile Settings</h2><p>अपनी अकाउंट सेटिंग्स यहाँ बदलें।</p></div>
+    <div class="page-head">
+      <h2>Profile Settings</h2>
+      <p>Manage your account settings, security, and preferences.</p>
+    </div>
   </section>
 
   <!-- ---------- PURCHASES VIEW ---------- -->
   <section class="view" id="view-purchases">
-    <div class="page-head"><h2>Your Purchased Games</h2><p>आपके खरीदे गए गेम्स यहाँ दिखेंगे।</p></div>
-    <div class="poster-grid" id="purchasesGrid"></div>
+    <div class="page-head">
+      <h2>Purchased Games</h2>
+      <p>Your owned digital games and downloadable titles will appear here.</p>
+    </div>
+    <div class="video-grid" id="purchasesGrid"></div>
   </section>
 
-  <!-- ===================== FOOTER (हर view के बाद, scroll करके नीचे आता है) ===================== -->
+  <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
     <div class="social-icons">
       <a href="https://x.com/realvanvaar" target="_blank" rel="noopener" aria-label="X (Twitter)">
@@ -214,7 +271,7 @@
     </div>
     <div class="footer-links">
       <a href="#" data-view="privacy">Privacy Policy</a>
-      <a href="#" data-view="terms">Terms and Conditions</a>
+      <a href="#" data-view="terms">Terms & Conditions</a>
       <a href="#" data-view="feedback">Give Feedback</a>
       <a href="#" data-view="support">Support</a>
     </div>
@@ -223,23 +280,23 @@
 
 </main>
 
-<!-- ===================== BOTTOM BAR (fixed, पूरी साइट पर स्थिर) ===================== -->
+<!-- ===================== BOTTOM BAR (SLIMMER) ===================== -->
 <nav class="bottombar" id="bottombar">
   <button class="tab-btn active" data-view="home" aria-label="Home">
     <svg viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span>होम</span>
+    <span>Home</span>
   </button>
   <button class="tab-btn" data-view="games" aria-label="Games">
     <svg viewBox="0 0 24 24" fill="none"><rect x="2.5" y="8" width="19" height="9" rx="4" stroke="currentColor" stroke-width="1.8"/><line x1="7.5" y1="10.5" x2="7.5" y2="14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="5.5" y1="12.5" x2="9.5" y2="12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18.5" cy="13.5" r="1" fill="currentColor"/></svg>
-    <span>गेम्स</span>
+    <span>Games</span>
   </button>
   <button class="tab-btn" data-view="movies" aria-label="Movies">
     <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5.5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="9" x2="21" y2="9" stroke="currentColor" stroke-width="1.8"/><line x1="7" y1="5.5" x2="5" y2="9" stroke="currentColor" stroke-width="1.8"/><line x1="13" y1="5.5" x2="11" y2="9" stroke="currentColor" stroke-width="1.8"/><line x1="19" y1="5.5" x2="17" y2="9" stroke="currentColor" stroke-width="1.8"/></svg>
-    <span>मूवीज़</span>
+    <span>Movies</span>
   </button>
   <button class="tab-btn" data-view="profile" aria-label="Profile">
     <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.2" r="3.3" stroke="currentColor" stroke-width="1.8"/><path d="M5 19c1.2-3.2 3.9-5 7-5s5.8 1.8 7 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-    <span>प्रोफाइल</span>
+    <span>Profile</span>
   </button>
 </nav>
 
