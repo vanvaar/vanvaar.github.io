@@ -15,4 +15,5 @@ function openTab(tabId, element) {
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    
+        }
