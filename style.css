@@ -16,7 +16,7 @@
   --font-main:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --topbar-h:     56px;
-  --bottombar-h:  50px;
+  --bottombar-h:  50px; /* Slimmer Bottom Bar */
   --transition:   0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -41,53 +41,6 @@ img { max-width: 100%; display: block; }
 button { font-family: inherit; cursor: pointer; }
 ::selection { background: var(--red); color: var(--white); }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-
-/* ==========================================================
-   OFFICIAL BRAND BADGE LOGO (User's Exact Design Box)
-   ========================================================== */
-.vanvaar-official-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #141414;
-  border: 2px solid var(--red);
-  padding: 3px 11px;
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(210, 18, 46, 0.25);
-  user-select: none;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-.vanvaar-official-badge span {
-  font-family: var(--font-main);
-  font-weight: 900;
-  font-style: italic;
-  font-size: 1.18rem;
-  letter-spacing: 0.04em;
-  color: var(--white);
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.brand-logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.brand-logo:hover .vanvaar-official-badge {
-  border-color: #ff2a46;
-  box-shadow: 0 0 14px rgba(210, 18, 46, 0.45);
-}
-
-.side-menu-badge {
-  padding: 4px 12px;
-}
-.side-menu-badge span {
-  font-size: 1.1rem;
-}
 
 .icon-btn {
   background: none;
@@ -118,6 +71,24 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   padding: 0 clamp(0.75rem, 4vw, 2rem);
+}
+.brand-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+.brand-logo img { height: 100%; width: auto; object-fit: contain; }
+.logo-fallback {
+  display: none;
+  font-family: var(--font-main);
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+  color: var(--white);
 }
 .accent { color: var(--red); }
 
@@ -190,6 +161,13 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: space-between;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--line-dark);
+}
+.side-menu-brand {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--white);
 }
 
 .side-menu-list { list-style: none; padding: 0.5rem 0; overflow-y: auto; }
@@ -289,7 +267,7 @@ main#mainContent {
 }
 @media (max-width: 600px) {
   .video-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Full width YouTube-like single stream on small mobile */
     gap: 1.5rem;
   }
 }
@@ -302,7 +280,7 @@ main#mainContent {
 }
 .video-thumb {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9; /* YouTube Long Video Standard Widescreen */
   background: var(--off-white);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -353,17 +331,6 @@ main#mainContent {
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-}
-.about-logo-wrapper {
-  margin-bottom: 0.5rem;
-}
-.about-badge {
-  padding: 6px 20px;
-  border-width: 2.5px;
-}
-.about-badge span {
-  font-size: 1.6rem;
-  letter-spacing: 0.05em;
 }
 .about-body p {
   font-size: 1rem;
