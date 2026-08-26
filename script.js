@@ -16,51 +16,39 @@ const bottombar = document.getElementById('bottombar');
 const topbar = document.getElementById('topbar');
 const mainContent = document.getElementById('mainContent');
 
+// Views जिन पर bottom bar का कोई काम नहीं है
 const HIDE_BOTTOMBAR_VIEWS = ['login', 'signup'];
 
 /* ==========================================================
-   SMART HISTORY NAVIGATION
-   - Step-by-step back button support.
-   - When reaching root 'home' and pressing back again,
-     the browser cleanly exits the website.
+   HISTORY-BASED NAVIGATION
+   हर click एक history entry बनाता है, ताकि phone का back
+   button दबाने पर सिर्फ एक ही step पीछे जाए — सीधे home पर
+   नहीं पहुंचे, और site browser से बंद भी न हो।
    ========================================================== */
 let currentState = { view: 'home', search: false, menu: false };
 
 function renderState(state) {
-  // Switch Views
+  // Views दिखाना/छुपाना
   views.forEach(v => v.classList.toggle('active', v.id === 'view-' + state.view));
   tabBtns.forEach(b => b.classList.toggle('active', b.dataset.view === state.view));
 
-  // Search box state
+  // Search box
   searchBox.classList.toggle('open', state.search);
   if (!state.search) searchInput.value = '';
 
-  // Side menu state
+  // Side menu
   sideMenu.classList.toggle('open', state.menu);
   menuOverlay.classList.toggle('open', state.menu);
 
-  // Bottom bar auto-hide
+  // Bottom bar — search खुला हो या login/signup view हो तो छुपा दो
   const hideBar = state.search || HIDE_BOTTOMBAR_VIEWS.includes(state.view);
   bottombar.classList.toggle('hidden', hideBar);
 
   currentState = state;
 }
 
+// नया navigation step: history में push करो + UI update करो
 function navigate(partial) {
-  // If clicking on same active view with no open modals, avoid duplicate states
-  if (
-    partial.view &&
-    partial.view === currentState.view &&
-    !currentState.search &&
-    !currentState.menu &&
-    !partial.search &&
-    !partial.menu
-  ) {
-    mainContent.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-    window.scrollTo(0, 0);
-    return;
-  }
-
   const newState = { ...currentState, ...partial };
   history.pushState(newState, '');
   renderState(newState);
@@ -68,21 +56,17 @@ function navigate(partial) {
   window.scrollTo(0, 0);
 }
 
-// Initial entry state (Replace state so initial home doesn't duplicate)
+// शुरुआती state सेट करो (yeh history में replace होगा, push नहीं)
 history.replaceState(currentState, '');
 renderState(currentState);
 
-// Back / Forward Browser Event
+// Back/Forward button दबाने पर
 window.addEventListener('popstate', (e) => {
-  if (e.state) {
-    renderState(e.state);
-  } else {
-    // If no state exists (reached first entry), render home
-    renderState({ view: 'home', search: false, menu: false });
-  }
+  const state = e.state || { view: 'home', search: false, menu: false };
+  renderState(state);
 });
 
-/* ---------- VIEW LINKS ---------- */
+/* ---------- VIEW LINKS (menu items, see-all, bottom tabs) ---------- */
 document.querySelectorAll('[data-view]').forEach(el => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
