@@ -1,5 +1,5 @@
 /* ==========================================================
-   VANVAAR — HIGH CONTRAST LUXURY SERIF & PERFORMANCE THEME
+   VANVAAR — CLEAN SANS-SERIF, HIGH CONTRAST, PERFORMANCE THEME
    ========================================================== */
 :root {
   --black:        #0E0E0E;
@@ -13,7 +13,7 @@
   --line-dark:    #242424;
   --accent-blue:  #38B6FF;
 
-  --font-serif:   'Playfair Display', Georgia, serif;
+  --font-main:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --topbar-h:     56px;
   --bottombar-h:  50px; /* Slimmer Bottom Bar */
@@ -31,7 +31,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--white);
   color: var(--black);
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -84,10 +84,10 @@ button { font-family: inherit; cursor: pointer; }
 .brand-logo img { height: 100%; width: auto; object-fit: contain; }
 .logo-fallback {
   display: none;
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-weight: 900;
   font-size: 1.35rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   color: var(--white);
 }
 .accent { color: var(--red); }
@@ -120,11 +120,11 @@ button { font-family: inherit; cursor: pointer; }
   border: none;
   color: var(--white);
   padding: 0.55rem 0.85rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: 0.95rem;
 }
 .search-box input:focus { outline: none; }
-.search-box input::placeholder { color: var(--gray); font-style: italic; }
+.search-box input::placeholder { color: var(--gray); }
 
 /* ==========================================================
    SIDE MENU
@@ -163,10 +163,10 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: 1px solid var(--line-dark);
 }
 .side-menu-brand {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-weight: 800;
   font-size: 1.15rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   color: var(--white);
 }
 
@@ -176,7 +176,8 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
   padding: 0.85rem 1.25rem;
   font-size: 0.95rem;
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   border-left: 3px solid transparent;
   transition: background var(--transition), border-color var(--transition);
 }
@@ -206,7 +207,7 @@ main#mainContent {
 .hero {
   position: relative;
   background: linear-gradient(155deg, var(--black) 0%, #121212 100%);
-  padding: clamp(2.5rem, 8vw, 4.5rem) clamp(1.25rem, 6vw, 3rem);
+  padding: clamp(2.75rem, 9vw, 4.75rem) clamp(1.25rem, 6vw, 3rem);
   overflow: hidden;
   color: var(--white);
 }
@@ -219,21 +220,12 @@ main#mainContent {
   opacity: 0.88;
 }
 .hero-inner { position: relative; z-index: 1; max-width: 38rem; }
-.eyebrow {
-  font-family: var(--font-serif);
-  color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-}
 .hero-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: clamp(2.5rem, 10vw, 4.8rem);
   font-weight: 900;
   line-height: 1;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.01em;
   margin-bottom: 0.8rem;
 }
 .hero-sub {
@@ -241,7 +233,6 @@ main#mainContent {
   font-size: clamp(0.95rem, 2vw, 1.15rem);
   line-height: 1.6;
   max-width: 28rem;
-  font-style: italic;
 }
 
 /* ---------- ROW HEAD ---------- */
@@ -252,17 +243,17 @@ main#mainContent {
   padding: 2.2rem clamp(1.25rem, 6vw, 3rem) 1rem;
 }
 .row-head h2 {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: clamp(1.4rem, 3.5vw, 2rem);
   font-weight: 800;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.005em;
 }
 .see-all {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: 0.85rem;
   color: var(--red);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   transition: opacity var(--transition);
 }
 .see-all:hover { opacity: 0.8; text-decoration: underline; }
@@ -306,7 +297,7 @@ main#mainContent {
 }
 .video-info { display: flex; flex-direction: column; gap: 0.2rem; }
 .video-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--black);
@@ -315,7 +306,7 @@ main#mainContent {
 .video-meta {
   font-size: 0.82rem;
   color: var(--gray);
-  font-style: italic;
+  font-weight: 500;
 }
 
 /* ---------- PAGE HEADINGS ---------- */
@@ -325,13 +316,27 @@ main#mainContent {
   margin-bottom: 1.5rem;
 }
 .page-head h2 {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: clamp(1.7rem, 4vw, 2.4rem);
   font-weight: 800;
 }
-.page-head p { color: var(--gray); margin-top: 0.4rem; font-size: 0.95rem; font-style: italic; }
+.page-head p { color: var(--gray); margin-top: 0.4rem; font-size: 0.95rem; }
 
 .full-grid { padding-bottom: 3rem; }
+
+/* ---------- ABOUT PAGE BODY ---------- */
+.about-body {
+  padding: 0 clamp(1.25rem, 6vw, 3rem) 3rem;
+  max-width: 42rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.about-body p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #333;
+}
 
 /* ---------- STATIC AUTH FORMS ---------- */
 .auth-form {
@@ -346,14 +351,14 @@ main#mainContent {
   padding: 0.85rem 1rem;
   border: 1px solid var(--line);
   border-radius: 4px;
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: 0.95rem;
 }
 .auth-form input:focus { outline: none; border-color: var(--red); }
 
 .btn {
-  font-family: var(--font-serif);
-  letter-spacing: 0.05em;
+  font-family: var(--font-main);
+  letter-spacing: 0.02em;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 0.85rem 1.5rem;
@@ -400,6 +405,7 @@ main#mainContent {
   justify-content: center;
   gap: 1.25rem;
   font-size: 0.85rem;
+  font-weight: 500;
   color: #CCCCCC;
   margin-bottom: 1.2rem;
 }
@@ -408,7 +414,6 @@ main#mainContent {
 .copyright {
   font-size: 0.78rem;
   color: var(--gray);
-  font-style: italic;
 }
 
 /* ==========================================================
@@ -427,6 +432,12 @@ main#mainContent {
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: env(safe-area-inset-bottom);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.bottombar.hidden {
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
 }
 .tab-btn {
   background: none;
@@ -441,10 +452,10 @@ main#mainContent {
 }
 .tab-btn svg { width: 19px; height: 19px; }
 .tab-btn span {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
 }
 .tab-btn:hover { color: var(--accent-blue); }
 .tab-btn.active { color: var(--accent-blue); transform: translateY(-1px); }
