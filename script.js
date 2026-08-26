@@ -1,66 +1,105 @@
 // Auto-update copyright year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ---------- VIEW SWITCHING ---------- */
+/* ---------- ELEMENT REFERENCES ---------- */
 const views = document.querySelectorAll('.view');
 const tabBtns = document.querySelectorAll('.tab-btn');
+const searchBox = document.getElementById('searchBox');
+const searchToggle = document.getElementById('searchToggle');
+const searchClose = document.getElementById('searchClose');
+const searchInput = document.getElementById('searchInput');
+const sideMenu = document.getElementById('sideMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
+const bottombar = document.getElementById('bottombar');
+const topbar = document.getElementById('topbar');
+const mainContent = document.getElementById('mainContent');
 
-function showView(name) {
-  views.forEach(v => v.classList.toggle('active', v.id === 'view-' + name));
-  tabBtns.forEach(b => b.classList.toggle('active', b.dataset.view === name));
-  document.getElementById('mainContent').scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-  window.scrollTo(0, 0);
-  closeMenu();
+// Views जिन पर bottom bar का कोई काम नहीं है
+const HIDE_BOTTOMBAR_VIEWS = ['login', 'signup'];
+
+/* ==========================================================
+   HISTORY-BASED NAVIGATION
+   हर click एक history entry बनाता है, ताकि phone का back
+   button दबाने पर सिर्फ एक ही step पीछे जाए — सीधे home पर
+   नहीं पहुंचे, और site browser से बंद भी न हो।
+   ========================================================== */
+let currentState = { view: 'home', search: false, menu: false };
+
+function renderState(state) {
+  // Views दिखाना/छुपाना
+  views.forEach(v => v.classList.toggle('active', v.id === 'view-' + state.view));
+  tabBtns.forEach(b => b.classList.toggle('active', b.dataset.view === state.view));
+
+  // Search box
+  searchBox.classList.toggle('open', state.search);
+  if (!state.search) searchInput.value = '';
+
+  // Side menu
+  sideMenu.classList.toggle('open', state.menu);
+  menuOverlay.classList.toggle('open', state.menu);
+
+  // Bottom bar — search खुला हो या login/signup view हो तो छुपा दो
+  const hideBar = state.search || HIDE_BOTTOMBAR_VIEWS.includes(state.view);
+  bottombar.classList.toggle('hidden', hideBar);
+
+  currentState = state;
 }
 
-// Attach event listener to all elements with data-view
+// नया navigation step: history में push करो + UI update करो
+function navigate(partial) {
+  const newState = { ...currentState, ...partial };
+  history.pushState(newState, '');
+  renderState(newState);
+  mainContent.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  window.scrollTo(0, 0);
+}
+
+// शुरुआती state सेट करो (yeh history में replace होगा, push नहीं)
+history.replaceState(currentState, '');
+renderState(currentState);
+
+// Back/Forward button दबाने पर
+window.addEventListener('popstate', (e) => {
+  const state = e.state || { view: 'home', search: false, menu: false };
+  renderState(state);
+});
+
+/* ---------- VIEW LINKS (menu items, see-all, bottom tabs) ---------- */
 document.querySelectorAll('[data-view]').forEach(el => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
-    showView(el.dataset.view);
+    navigate({ view: el.dataset.view, search: false, menu: false });
   });
 });
 
 document.getElementById('logoHome').addEventListener('click', (e) => {
   e.preventDefault();
-  showView('home');
+  navigate({ view: 'home', search: false, menu: false });
 });
 
 /* ---------- SEARCH TOGGLE ---------- */
-const searchBox = document.getElementById('searchBox');
-const searchToggle = document.getElementById('searchToggle');
-const searchClose = document.getElementById('searchClose');
-const searchInput = document.getElementById('searchInput');
-
 searchToggle.addEventListener('click', () => {
-  searchBox.classList.add('open');
+  navigate({ search: true });
   searchInput.focus();
 });
 searchClose.addEventListener('click', () => {
-  searchBox.classList.remove('open');
-  searchInput.value = '';
+  history.back();
 });
 
 /* ---------- SIDE MENU ---------- */
-const sideMenu = document.getElementById('sideMenu');
-const menuOverlay = document.getElementById('menuOverlay');
-const menuToggle = document.getElementById('menuToggle');
-const menuClose = document.getElementById('menuClose');
-
-function openMenu() {
-  sideMenu.classList.add('open');
-  menuOverlay.classList.add('open');
-}
-function closeMenu() {
-  sideMenu.classList.remove('open');
-  menuOverlay.classList.remove('open');
-}
-menuToggle.addEventListener('click', openMenu);
-menuClose.addEventListener('click', closeMenu);
-menuOverlay.addEventListener('click', closeMenu);
+menuToggle.addEventListener('click', () => {
+  navigate({ menu: true });
+});
+menuClose.addEventListener('click', () => {
+  history.back();
+});
+menuOverlay.addEventListener('click', () => {
+  history.back();
+});
 
 /* ---------- TOPBAR SHADOW ON SCROLL ---------- */
-const topbar = document.getElementById('topbar');
 window.addEventListener('scroll', () => {
   topbar.style.boxShadow = window.scrollY > 10 ? '0 2px 12px rgba(0,0,0,0.4)' : 'none';
 }, { passive: true });
