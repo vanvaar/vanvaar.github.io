@@ -6,13 +6,13 @@
   --black:        #0D0D0D;
   --white:        #FFFFFF;
   --off-white:    #F5F5F6;
-  --blue:         #0057FF;
-  --blue-dark:    #0040BF;
+  --blue:         #47596C;
+  --blue-dark:    #34424F;
   --gray:         #6B7280;
   --gray-light:   #A1A7B0;
   --line:         #E4E4E7;
 
-  --font-main:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-main:    'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --topbar-h:     56px;
   --bottombar-h:  52px;
@@ -88,7 +88,7 @@ button { font-family: inherit; cursor: pointer; }
 .brand-logo:hover { transform: translate(-50%, -50%) rotate(-3deg) scale(1.05); }
 .logo-text {
   font-family: var(--font-main);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 1.3rem;
   letter-spacing: 0.01em;
   color: var(--black);
@@ -222,7 +222,7 @@ main#mainContent {
 .hero-title {
   font-family: var(--font-main);
   font-size: clamp(2.5rem, 10vw, 4.8rem);
-  font-weight: 900;
+  font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin-bottom: 0.8rem;
