@@ -1,0 +1,12 @@
+{
+  "name": "vanvaar-github-io",
+  "compatibility_date": "2026-09-22",
+  "pages_build_output_dir": ".",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vanvaar-db",
+      "database_id": "6e91d039-4ec0-4476-b146-6a905d3950e7"
+    }
+  ]
+}
